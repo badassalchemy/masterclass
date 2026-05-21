@@ -1,926 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Quantum Queen · Module 3 — The Belief Audit</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quantum Queen — A Free Masterclass</title>
+<meta name="description" content="Full identity transformation. The woman on the other side doesn't look like you; she IS the badass version of you. Finally.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%;width:100%;font-family:'Montserrat',sans-serif;background:#1F1320;color:#EDD8E5;overflow:hidden}
-  #root{height:100vh;width:100vw}
-  ::-webkit-scrollbar{height:3px;width:4px}
-  ::-webkit-scrollbar-thumb{background:rgba(181,123,174,0.32);border-radius:2px}
-  textarea{font-family:'Montserrat',sans-serif;font-weight:500}
-  button{font-family:'Montserrat',sans-serif;outline:none}
-  @keyframes fadeIn{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
-  @keyframes expandIn{0%{opacity:0;max-height:0}100%{opacity:1;max-height:5000px}}
-  @keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 rgba(181,123,174,0.4)}50%{box-shadow:0 0 0 8px rgba(181,123,174,0)}}
-  .lesson-content{animation:fadeIn .3s ease both}
-  .expand-content{animation:expandIn .35s ease both;overflow:hidden}
-  .pulse{animation:pulseGlow 2s ease-in-out infinite}
-  @media(max-width:768px){
-    .desktop-only{display:none!important}
-    .mobile-only{display:flex!important}
-    .sidebar{position:absolute!important;left:0;top:0;bottom:0;z-index:100;transform:translateX(-100%);transition:transform .25s ease}
-    .sidebar.open{transform:translateX(0)}
-    .main-inner{padding:24px 20px 80px!important}
-    .lesson-top{flex-direction:column;gap:8px!important}
-    .lesson-bottom{flex-direction:column;align-items:stretch!important}
-    .lesson-bottom button{width:100%}
-    .tracker-grid{grid-template-columns:repeat(7,1fr)!important}
+  :root{
+    --mauve-light:#B57BAE;
+    --mauve-deep:#6E3865;
+    --brand-grad:linear-gradient(135deg,#B57BAE 0%,#6E3865 100%);
+    --bg:#1F1320;
+    --bg-card:#2A1A2D;
+    --input-bg:#160C18;
+    --accent:#6E3865;
+    --accent-lt:#B57BAE;
+    --detail:#C99CC1;
+    --txt:#FAEFF4;
+    --txt-sec:#EDD8E5;
+    --txt-muted:#C9A8BE;
+    --txt-faded:#9B7090;
+    --moon:#FAEFF4;
+    --border:rgba(181,123,174,0.18);
+    --border-mid:rgba(181,123,174,0.32);
+    --border-strong:rgba(181,123,174,0.42);
+    --shadow:0 4px 20px rgba(45,15,35,0.4);
+    --shadow-strong:0 20px 60px rgba(45,15,35,0.6);
+    --on-grad-white:#FFFFFF;
+    --on-grad-plum:#3A1E33;
+    --on-grad-deep-plum:#2A1424;
+    --hero-grad:linear-gradient(160deg,#1F1320 0%,#2A1A2D 40%,#3D2040 75%,#4A2548 100%);
+    --section-grad:linear-gradient(150deg,#1F1320 0%,#2A1A2D 50%,#352038 100%);
+    --glow:radial-gradient(ellipse at 55% 60%,rgba(181,123,174,0.18),transparent 60%);
+    --glow-2:radial-gradient(ellipse at 25% 35%,rgba(110,56,101,0.25),transparent 55%);
+    --stars:radial-gradient(1px 1px at 20% 30%,rgba(250,239,244,0.4),transparent),radial-gradient(1px 1px at 60% 15%,rgba(250,239,244,0.3),transparent),radial-gradient(1.5px 1.5px at 80% 60%,rgba(250,239,244,0.35),transparent),radial-gradient(1px 1px at 40% 80%,rgba(250,239,244,0.25),transparent),radial-gradient(1px 1px at 10% 70%,rgba(250,239,244,0.3),transparent),radial-gradient(1.5px 1.5px at 90% 25%,rgba(250,239,244,0.4),transparent),radial-gradient(1px 1px at 35% 50%,rgba(250,239,244,0.3),transparent),radial-gradient(1.5px 1.5px at 70% 85%,rgba(250,239,244,0.35),transparent);
   }
-  @media(min-width:769px){.mobile-only{display:none!important}}
-  #loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#1F1320;color:#B57BAE;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;z-index:9999;flex-direction:column;gap:12px}
-  .spinner{width:32px;height:32px;border:2px solid rgba(181,123,174,0.2);border-top-color:#B57BAE;border-radius:50%;animation:spin 1s linear infinite}
-  @keyframes spin{to{transform:rotate(360deg)}}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Montserrat',sans-serif;font-size:17px;background:var(--bg);color:var(--txt-sec);line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:400;}
+  ::selection{background:var(--accent);color:var(--moon);}
+  ::-webkit-scrollbar{width:6px;height:6px;}
+  ::-webkit-scrollbar-track{background:var(--bg);}
+  ::-webkit-scrollbar-thumb{background:var(--border-mid);border-radius:3px;}
+  ::-webkit-scrollbar-thumb:hover{background:var(--accent-lt);}
+  @keyframes fadeUp{0%{opacity:0;transform:translateY(24px);}100%{opacity:1;transform:translateY(0);}}
+  @keyframes shimmer{0%,100%{opacity:0.6;}50%{opacity:1;}}
+  @keyframes pulseGlow{0%,100%{opacity:0.4;transform:scale(1);}50%{opacity:0.9;transform:scale(1.05);}}
+  @keyframes drift{0%{transform:translate(0,0);}50%{transform:translate(20px,-30px);}100%{transform:translate(0,0);}}
+  .reveal{opacity:0;animation:fadeUp 1.2s ease-out forwards;}
+  .reveal-1{animation-delay:0.1s;}.reveal-2{animation-delay:0.3s;}.reveal-3{animation-delay:0.5s;}.reveal-4{animation-delay:0.7s;}.reveal-5{animation-delay:0.9s;}
+  .container{max-width:1100px;margin:0 auto;padding:0 36px;}
+  .container-narrow{max-width:820px;margin:0 auto;padding:0 36px;}
+  .stars-bg{position:absolute;inset:0;background-image:var(--stars);pointer-events:none;animation:shimmer 6s ease-in-out infinite;}
+  .grain{position:absolute;inset:0;opacity:0.03;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");}
+  .topbar{position:sticky;top:0;z-index:100;background:rgba(31,19,32,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:18px 36px;display:flex;align-items:center;justify-content:space-between;}
+  .brand-mark{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;font-style:italic;color:var(--txt);letter-spacing:0.3px;}
+  .brand-mark span{color:var(--accent-lt);}
+  .top-cta{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.8px;color:var(--accent-lt);text-transform:uppercase;text-decoration:none;padding:11px 22px;border:1px solid var(--border-strong);border-radius:30px;transition:all 0.3s ease;}
+  .top-cta:hover{background:var(--accent);color:var(--moon);border-color:var(--accent);}
+  .hero{position:relative;background:var(--hero-grad);padding:140px 0 120px;overflow:hidden;text-align:center;}
+  .hero::before{content:"";position:absolute;inset:0;background:var(--glow);pointer-events:none;}
+  .hero::after{content:"";position:absolute;inset:0;background:var(--glow-2);pointer-events:none;}
+  .hero-content{position:relative;z-index:2;}
+  .eyebrow{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--detail);letter-spacing:0.5px;margin-bottom:10px;}
+  .kicker{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:4.5px;text-transform:uppercase;color:var(--accent-lt);margin-bottom:36px;display:inline-block;position:relative;}
+  .kicker::before,.kicker::after{content:"";position:absolute;top:50%;width:48px;height:1px;background:var(--accent-lt);opacity:0.5;}
+  .kicker::before{right:calc(100% + 18px);}
+  .kicker::after{left:calc(100% + 18px);}
+  h1.hero-title{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(48px,7.5vw,92px);line-height:1.05;letter-spacing:-0.02em;color:var(--txt);margin-bottom:22px;}
+  h1.hero-title em{font-style:italic;color:var(--accent-lt);font-weight:400;display:block;}
+  .hero-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.9vw,28px);color:var(--txt);max-width:720px;margin:0 auto 44px;line-height:1.6;font-weight:400;}
+  .hero-divider{display:flex;align-items:center;justify-content:center;gap:16px;margin:52px auto 0;color:var(--accent-lt);}
+  .hero-divider::before,.hero-divider::after{content:"";width:70px;height:1px;background:linear-gradient(90deg,transparent,var(--accent-lt),transparent);}
+  .hero-divider span{font-size:20px;animation:shimmer 3s ease-in-out infinite;}
+  .video-section{background:var(--bg);padding:110px 0;position:relative;overflow:hidden;}
+  .video-section::before{content:"";position:absolute;top:-40%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(110,56,101,0.18),transparent 70%);border-radius:50%;pointer-events:none;animation:drift 20s ease-in-out infinite;}
+  .video-label{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--accent-lt);text-align:center;margin-bottom:16px;position:relative;z-index:2;}
+  .video-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,5.5vw,64px);font-weight:500;font-style:italic;color:var(--txt);text-align:center;margin-bottom:56px;line-height:1.15;position:relative;z-index:2;letter-spacing:-0.01em;}
+  .video-heading em{color:var(--accent-lt);font-style:italic;}
+  .video-wrap{position:relative;z-index:2;max-width:960px;margin:0 auto;padding:0 36px;}
+  .post-video-cta{text-align:center;margin-top:56px;padding:0 16px;}
+  .post-video-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.8vw,30px);color:var(--txt);line-height:1.5;margin-bottom:36px;max-width:680px;margin-left:auto;margin-right:auto;}
+  .post-video-text em{color:var(--accent-lt);font-style:italic;font-weight:500;}
+  .video-frame{position:relative;width:100%;aspect-ratio:16/9;background:var(--section-grad);border-radius:20px;border:1px solid var(--border-strong);box-shadow:var(--shadow-strong),0 0 0 1px rgba(181,123,174,0.08);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .video-frame::before{content:"";position:absolute;inset:0;background-image:var(--stars);opacity:0.6;}
+  .video-placeholder-inner{position:relative;z-index:2;text-align:center;padding:0 24px;}
+  .play-circle{width:100px;height:100px;border-radius:50%;background:var(--brand-grad);margin:0 auto 26px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 1px rgba(181,123,174,0.4),0 0 60px rgba(181,123,174,0.45);position:relative;}
+  .play-circle::before{content:"";position:absolute;inset:-14px;border:1px solid var(--accent-lt);border-radius:50%;opacity:0.4;animation:pulseGlow 2.5s ease-in-out infinite;}
+  .play-circle::after{content:"";border-style:solid;border-width:16px 0 16px 25px;border-color:transparent transparent transparent var(--moon);margin-left:7px;}
+  .video-placeholder-text{font-family:'Cormorant Garamond',serif;font-size:26px;font-style:italic;color:var(--txt);margin-bottom:10px;line-height:1.3;}
+  .video-placeholder-sub{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--txt-faded);}
+  section.bloc{padding:130px 0;position:relative;}
+  .section-stars{position:absolute;inset:0;background-image:var(--stars);opacity:0.4;pointer-events:none;}
+  .section-eyebrow{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent-lt);text-align:center;margin-bottom:22px;}
+  h2.section-h{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5.5vw,68px);font-weight:500;line-height:1.1;letter-spacing:-0.01em;color:var(--txt);text-align:center;margin-bottom:28px;}
+  h2.section-h em{color:var(--accent-lt);font-style:italic;font-weight:400;}
+  .stuck-section{background:var(--bg-card);}
+  .stuck-intro{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.4vw,26px);color:var(--txt);text-align:center;max-width:580px;margin:0 auto 72px;line-height:1.8;}
+  .stuck-intro p{margin-bottom:8px;}
+  .stuck-intro .punch{color:var(--txt);font-weight:500;margin-top:36px;font-size:clamp(24px,2.8vw,28px);}
+  .pattern-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:820px;margin:0 auto 72px;}
+  .pattern{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:26px 22px;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:24px;color:var(--txt);transition:all 0.4s ease;position:relative;overflow:hidden;line-height:1.3;}
+  .pattern::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent-lt),transparent);opacity:0;transition:opacity 0.4s ease;}
+  .pattern:hover{border-color:var(--border-strong);background:linear-gradient(180deg,var(--bg) 0%,rgba(110,56,101,0.18) 100%);transform:translateY(-3px);}
+  .pattern:hover::before{opacity:1;}
+  .thesis-card{max-width:760px;margin:0 auto;background:var(--section-grad);border:1px solid var(--border-strong);border-radius:20px;padding:56px 44px;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow-strong);}
+  .thesis-card::before{content:"";position:absolute;inset:0;background-image:var(--stars);opacity:0.5;}
+  .thesis-text{position:relative;z-index:2;font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.4vw,36px);font-weight:500;line-height:1.4;color:var(--txt);font-style:italic;}
+  .thesis-text em{color:var(--accent-lt);font-style:italic;}
+  .inside-section{background:var(--bg);position:relative;}
+  .lesson-list{max-width:820px;margin:56px auto 0;display:flex;flex-direction:column;gap:2px;}
+  .lesson{display:flex;align-items:flex-start;gap:28px;padding:32px 18px;border-bottom:1px solid var(--border);transition:all 0.4s ease;cursor:default;}
+  .lesson:last-child{border-bottom:none;}
+  .lesson:hover{padding-left:32px;background:rgba(110,56,101,0.08);}
+  .lesson-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:34px;color:var(--accent-lt);flex-shrink:0;min-width:60px;line-height:1;padding-top:6px;}
+  .lesson-text{font-family:'Montserrat',sans-serif;font-size:clamp(17px,1.8vw,21px);font-style:normal;font-weight:500;color:var(--txt);line-height:1.55;letter-spacing:0.2px;}
+  .notabout-section{background:var(--hero-grad);position:relative;overflow:hidden;}
+  .notabout-section::before{content:"";position:absolute;inset:0;background:var(--glow);}
+  .notabout-content{position:relative;z-index:2;text-align:center;max-width:760px;margin:0 auto;}
+  .notabout-h{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5.5vw,64px);font-weight:500;line-height:1.1;letter-spacing:-0.01em;color:var(--txt);margin-bottom:44px;}
+  .notabout-h em{color:var(--accent-lt);font-style:italic;}
+  .notabout-body{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.6vw,28px);font-style:italic;line-height:1.7;color:var(--txt);}
+  .notabout-body p{margin-bottom:28px;}
+  .notabout-body strong{color:var(--txt);font-weight:500;font-style:italic;}
+  .cta-section{background:var(--bg);padding:140px 0;position:relative;overflow:hidden;text-align:center;}
+  .cta-section::before{content:"";position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(110,56,101,0.22),transparent 60%);border-radius:50%;pointer-events:none;}
+  .cta-inner{position:relative;z-index:2;}
+  .coming-soon-mark{display:inline-flex;align-items:center;gap:12px;padding:13px 28px;border-radius:40px;background:rgba(110,56,101,0.18);border:1px solid var(--border-strong);font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent-lt);margin-bottom:40px;}
+  .coming-soon-mark .dot{width:7px;height:7px;border-radius:50%;background:var(--accent-lt);animation:shimmer 2s ease-in-out infinite;}
+  .cta-h{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6.5vw,76px);font-weight:500;line-height:1.05;letter-spacing:-0.01em;color:var(--txt);margin-bottom:28px;}
+  .cta-h em{color:var(--accent-lt);font-style:italic;}
+  .cta-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.4vw,26px);color:var(--txt);max-width:620px;margin:0 auto 56px;line-height:1.6;}
+  .btn-primary{display:inline-block;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;color:var(--on-grad-white);background:var(--brand-grad);padding:22px 54px;border-radius:50px;border:1px solid rgba(255,255,255,0.25);box-shadow:0 14px 44px rgba(110,56,101,0.45),inset 0 1px 0 rgba(255,255,255,0.15);transition:all 0.4s ease;position:relative;overflow:hidden;}
+  .btn-primary::before{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent);transition:left 0.6s ease;}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 22px 56px rgba(110,56,101,0.6);}
+  .btn-primary:hover::before{left:100%;}
+  .story-section{background:var(--bg-card);position:relative;overflow:hidden;}
+  .story-section::before{content:"";position:absolute;top:20%;right:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(181,123,174,0.14),transparent 60%);border-radius:50%;pointer-events:none;animation:drift 25s ease-in-out infinite reverse;}
+  .story-grid{display:grid;grid-template-columns:1fr;gap:52px;max-width:820px;margin:0 auto;position:relative;z-index:2;}
+  .story-body{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.4vw,26px);font-style:italic;line-height:1.75;color:var(--txt);}
+  .story-body p{margin-bottom:24px;}
+  .story-body p:first-of-type{color:var(--txt);font-weight:500;font-size:clamp(24px,2.8vw,30px);}
+  .story-body em{color:var(--accent-lt);font-style:italic;}
+  .story-signature{margin-top:32px;display:flex;align-items:center;gap:16px;}
+  .sig-line{width:48px;height:1px;background:var(--accent-lt);}
+  .sig-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:var(--accent-lt);}
+  .final-section{background:var(--section-grad);padding:160px 0 150px;position:relative;overflow:hidden;text-align:center;}
+  .final-section::before{content:"";position:absolute;inset:0;background-image:var(--stars);opacity:0.7;}
+  .final-section::after{content:"";position:absolute;inset:0;background:var(--glow);}
+  .final-content{position:relative;z-index:2;}
+  .final-eyebrow{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:28px;color:var(--accent-lt);margin-bottom:32px;}
+  .final-h{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6.5vw,80px);font-weight:500;line-height:1.05;letter-spacing:-0.01em;color:var(--txt);margin-bottom:40px;}
+  .final-h em{color:var(--accent-lt);font-style:italic;font-weight:400;display:block;}
+  .final-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.8vw,30px);color:var(--txt);max-width:740px;margin:0 auto 64px;line-height:1.5;}
+  .final-q em{color:var(--txt);font-weight:500;}
+  footer{background:var(--input-bg);padding:60px 36px 40px;text-align:center;border-top:1px solid var(--border);}
+  .footer-brand{font-family:'Cormorant Garamond',serif;font-size:26px;font-style:italic;font-weight:600;color:var(--txt);margin-bottom:10px;}
+  .footer-brand span{color:var(--accent-lt);}
+  .footer-tag{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--txt);margin-bottom:28px;}
+  .footer-signoff{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--accent-lt);margin-bottom:8px;}
+  .footer-meta{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--txt-faded);}
+  .footer-divider{width:70px;height:1px;background:var(--border-strong);margin:28px auto;}
+  @media (max-width:768px){
+    body{font-size:16px;}
+    .topbar{padding:14px 22px;}
+    .top-cta{padding:9px 16px;font-size:10px;}
+    .container,.container-narrow{padding:0 24px;}
+    .hero{padding:90px 0 80px;}
+    .kicker::before,.kicker::after{width:28px;}
+    .kicker{font-size:11px;letter-spacing:3.2px;}
+    .eyebrow{font-size:16px;}
+    .hero-sub{font-size:20px;}
+    .video-section,section.bloc{padding:80px 0;}
+    .cta-section{padding:90px 0;}
+    .final-section{padding:100px 0;}
+    .stuck-intro{font-size:19px;}
+    .stuck-intro .punch{font-size:22px;}
+    .pattern{font-size:20px;padding:22px 18px;}
+    .thesis-card{padding:40px 28px;}
+    .lesson{padding:26px 10px;gap:20px;}
+    .lesson:hover{padding-left:10px;}
+    .lesson-num{font-size:26px;min-width:44px;}
+    .lesson-text{font-size:16px;}
+    .video-wrap{padding:0 24px;}
+    .post-video-cta{margin-top:40px;}
+    .post-video-text{font-size:20px;margin-bottom:28px;}
+    .play-circle{width:76px;height:76px;}
+    .play-circle::after{border-width:12px 0 12px 19px;}
+    .video-placeholder-text{font-size:20px;}
+    .btn-primary{padding:19px 38px;font-size:12px;letter-spacing:2.6px;}
+    .story-body{font-size:19px;}
+    .story-body p:first-of-type{font-size:21px;}
+    .notabout-body{font-size:20px;}
+    .final-q{font-size:20px;}
+    .final-eyebrow{font-size:22px;}
+    .section-eyebrow{font-size:11px;letter-spacing:3px;}
+    .video-label{font-size:11px;letter-spacing:3px;}
+    .footer-tag{font-size:16px;}
+    .footer-brand{font-size:22px;}
+  }
 </style>
 </head>
 <body>
 
-<div id="loading"><div class="spinner"></div><div>✦ Loading your Quantum Queen…</div></div>
-<div id="root"></div>
+<div class="topbar">
+  <div class="brand-mark">Beautiful <span>Badass</span></div>
+  <a href="https://api.leadconnectorhq.com/widget/booking/1kswvKdTmH7BMsMIIxU5" class="top-cta" target="_blank" rel="noopener">Book a Call</a>
+</div>
 
-<script crossorigin src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone@7.23.0/babel.min.js"></script>
+<section class="hero">
+  <div class="stars-bg"></div>
+  <div class="grain"></div>
+  <div class="hero-content container">
+    <div class="eyebrow reveal reveal-1">Badass Alchemy presents</div>
+    <div class="kicker reveal reveal-2">A Free Masterclass</div>
+    <h1 class="hero-title reveal reveal-3">
+      You Don't Need Another<br>Manifestation Method<br>
+      <em>You Need a New Identity</em>
+    </h1>
+    <p class="hero-sub reveal reveal-4">
+      For ambitious women ready to release subconscious survival patterns, expand their capacity to receive, and embody the version of themselves capable of holding more abundance, love, visibility, and self-trust.
+    </p>
+    <div class="hero-divider reveal reveal-5">
+      <span>&#10026;</span>
+    </div>
+  </div>
+</section>
 
-<script type="text/babel">
-const e = React.createElement;
-const { useState, useEffect } = React;
+<section class="video-section">
+  <div class="video-label">Watch the Masterclass</div>
+  <h2 class="video-heading">The <em>Quantum Queen</em> teaching</h2>
+  <div class="video-wrap">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/_wEmfMr7bN4?rel=0&modestbranding=1" title="Quantum Queen Masterclass" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:20px;"></iframe>
+    </div>
+    <div class="post-video-cta">
+      <p class="post-video-text">Now that you've watched it&hellip; if this resonates, <em>let's talk.</em></p>
+      <a href="https://api.leadconnectorhq.com/widget/booking/1kswvKdTmH7BMsMIIxU5" class="btn-primary" target="_blank" rel="noopener">Book a Discovery Call</a>
+    </div>
+  </div>
+</section>
 
-const MAUVE_LIGHT = "#B57BAE";
-const MAUVE_DEEP = "#6E3865";
-const BRAND_GRAD = "linear-gradient(135deg, " + MAUVE_LIGHT + " 0%, " + MAUVE_DEEP + " 100%)";
-const SIDEBAR_IMG = "https://raw.githubusercontent.com/badassalchemy/imageassets/main/mainbackground1.jpg";
+<section class="bloc stuck-section">
+  <div class="section-stars"></div>
+  <div class="container">
+    <div class="section-eyebrow">The Real Reason</div>
+    <h2 class="section-h">Why you still <em>feel stuck</em></h2>
 
-const DARK = {
-  bg: "#1F1320", bgCard: "#2A1A2D", darkMid: MAUVE_DEEP,
-  accent: MAUVE_DEEP, accentLt: MAUVE_LIGHT, detail: "#C99CC1",
-  moonPrl: "#FAEFF4", txt: "#FAEFF4", txtSec: "#EDD8E5",
-  txtMuted: "#C9A8BE", txtFaded: "#9B7090",
-  border: "rgba(181,123,174,0.18)", borderMid: "rgba(181,123,174,0.32)",
-  inputBg: "#160C18", shadow: "0 4px 20px rgba(45,15,35,0.4)"
-};
+    <div class="stuck-intro">
+      <p>You've done the journaling.</p>
+      <p>The healing.</p>
+      <p>The affirmations.</p>
+      <p>The mindset work.</p>
+      <p>The meditations.</p>
+      <p style="margin-top:28px;">And yet somehow&hellip;</p>
+      <p>you still feel trapped in the same emotional cycles.</p>
+      <p class="punch">Because the issue was never a lack of desire.</p>
+    </div>
 
-const LIGHT = {
-  bg: "#FBF5F8", bgCard: "#FFFFFF", darkMid: MAUVE_DEEP,
-  accent: MAUVE_DEEP, accentLt: MAUVE_LIGHT, detail: MAUVE_LIGHT,
-  moonPrl: "#FFFFFF", txt: "#3A1E33", txtSec: "#5A2F4E",
-  txtMuted: "#7A4A6C", txtFaded: "#A87A9A",
-  border: "rgba(110,56,101,0.12)", borderMid: "rgba(110,56,101,0.22)",
-  inputBg: "#FBF5F8", shadow: "0 4px 20px rgba(110,56,101,0.1)"
-};
+    <div class="section-eyebrow" style="margin-bottom:36px;">Even when expansion arrives</div>
 
-const MODULE_DATA = {
-  title: "Module 3",
-  subtitle: "The Belief Audit",
-  tagline: "The thoughts you inherited are running your bank account. We're auditing them now.",
-  lessons: [
-    {
-      id: 0, title: "Welcome to the Belief Audit", dur: "8-12 min", type: "video",
-      desc: "You just walked through your shadow. You met the parts of yourself that were sent underground, and you brought them home. That work was the demolition. This module is the rebuild. Because the shadow did not show up empty-handed. She brought a script — a set of inherited beliefs about who you are, what you deserve, and what is possible for a woman like you. Most of those beliefs were not yours. They were handed to you, modeled for you, decided about you before you could speak. And they are still running the show — in your bank account, your business, your body, your bedroom. This module is where we audit them. Excavate them. Interrogate them. And install new code.",
-      desc2: "Pay attention to this: the beliefs that feel most true are the ones that have been running you the longest. You will know we are getting somewhere when something you write makes you want to flinch, argue, or close the laptop. That is the assignment. Stay.",
-      takeaways: [
-        "Every limiting belief was installed by someone who was never the authority on you.",
-        "The beliefs that feel most factual are the ones you have collected the most evidence for. That does not make them true — it makes them familiar.",
-        "Your money story is the cleanest mirror of your identity. It will show you exactly where you are still living inside someone else's fear.",
-        "You do not have to believe the new belief yet. You have to be willing to look for evidence it might be possible. That willingness is the doorway."
-      ],
-      actions: [
-        "Watch the Module 3 welcome video inside the Skool classroom.",
-        "Pour something warm. Sit somewhere private. This module asks you to be honest about money in a way most women never are.",
-        "If the work in this module triggers real financial trauma or scarcity panic, slow down. This is not a sprint. Self-trust is built one honest answer at a time."
-      ]
-    },
-    {
-      id: 1, title: "The Belief Excavation", dur: "15-20 min", type: "excavation",
-      desc: "Before we dismantle anything, we have to see it. This is a rapid-fire exercise. Fourteen sentence completions. The rule is simple: write the first thing that comes up. Do not edit. Do not curate. Do not improve. Especially do not skip the ones that make you uncomfortable — those are the live wires.",
-      desc2: "Set a timer if you need to. Three minutes per sentence, maximum. The faster you write, the more you bypass the part of you that wants to look good on paper. We are not interested in the woman who looks good on paper. We are interested in the woman underneath her.",
-      takeaways: [
-        "The sentences you almost did not finish are the ones running your life.",
-        "Speed matters. The conscious mind edits. The body tells the truth.",
-        "Money beliefs are identity beliefs in disguise. Watch what comes up.",
-        "Highlight the answers that surprised you. Those are your most powerful blocks — and your most direct path forward."
-      ],
-      actions: [
-        "Set a timer for 15 minutes. Move through all 14 prompts without stopping.",
-        "When you finish, read it back. Highlight the three answers with the most charge — the ones that felt uncomfortably true.",
-        "Those three become your Top 3 Limiting Beliefs. You will work with them in Lessons 3, 4, and 5."
-      ],
-      excavationFields: [
-        { id: "exc-1", prompt: "Money is..." },
-        { id: "exc-2", prompt: "Money is hard because..." },
-        { id: "exc-3", prompt: "I am..." },
-        { id: "exc-4", prompt: "I am not..." },
-        { id: "exc-5", prompt: "Successful women are..." },
-        { id: "exc-6", prompt: "I do not deserve..." },
-        { id: "exc-7", prompt: "People like me..." },
-        { id: "exc-8", prompt: "When I think about charging more, I feel..." },
-        { id: "exc-9", prompt: "When money comes in, I immediately..." },
-        { id: "exc-10", prompt: "I would have more money if only..." },
-        { id: "exc-11", prompt: "The reason I am not further along is..." },
-        { id: "exc-12", prompt: "I am afraid that if I succeed..." },
-        { id: "exc-13", prompt: "I am afraid that if I fail..." },
-        { id: "exc-14", prompt: "The thing I tell myself that keeps me playing small is..." }
-      ]
-    },
-    {
-      id: 2, title: "Your Money Story", dur: "30-40 min", type: "journals",
-      desc: "Before you can rewrite the story, you have to know who wrote it. Your money beliefs are not airdropped opinions you picked up last Tuesday. They are inherited. Modeled. Whispered over dinner tables. Argued about behind closed doors. Performed by your mother, your father, the women in your family who never asked for what they were worth. You absorbed it all before you had language for it. This lesson is where we name the inheritance.",
-      desc2: "Write by hand if you can — there is something about ink that disarms the part of you that wants to perform. Then transfer what is most charged into the fields below. You are not looking for the right answer. You are looking for the honest one. The story under the story.",
-      takeaways: [
-        "You did not choose your money story. You inherited it. That means you can rewrite it.",
-        "Every belief you have about money has a first memory attached to it. That memory is the original code.",
-        "The women you watched are still in the room with you when you decide what to charge. Notice them.",
-        "Naming the inheritance is the first act of sovereignty. You cannot rewrite a story you do not know you are inside of."
-      ],
-      actions: [
-        "Work through each prompt with full presence. Do not rush.",
-        "Notice which question makes you want to skip it. That is the one you need most.",
-        "Save your answers. You will refer back to them when you write your declarations in Lesson 5."
-      ],
-      journals: [
-        { id: "money-1", prompt: "What is the first memory you have around money? Who was there. What was said. How old were you. What did you decide in that moment about what money meant?" },
-        { id: "money-2", prompt: "Who was the woman in your life who modeled your current relationship to money — for better or worse? What did you watch her do, say, swallow, settle for? Where is she still in the room with you?" },
-        { id: "money-3", prompt: "What were the rules about money in your home growing up? The spoken ones and the unspoken ones. What was praised, what was punished, what was never named?" },
-        { id: "money-4", prompt: "When did you first feel ashamed about money — about not having it, wanting it, or asking for it? Write the scene. Who made you feel that way and what did you conclude about yourself?" },
-        { id: "money-5", prompt: "What did the women in your lineage believe a woman was allowed to want? What were they not allowed to ask for? Where are you still honoring those limits as if they were yours?" },
-        { id: "money-6", prompt: "What is the version of wealthy women you were taught to distrust, dislike, or look down on? Describe her. Then ask — is the woman you are scared to become hidden inside that description?" }
-      ]
-    },
-    {
-      id: 3, title: "The Evidence Hunt", dur: "45-60 min", type: "beliefInquiry",
-      desc: "Now take the three most charged limiting beliefs from your Excavation in Lesson 1. The ones you highlighted. The ones that felt uncomfortably true. For each one, we are going to trace it back to its origin — because most limiting beliefs are not originally yours. They were handed to you. By a parent. A teacher. A relationship. A culture. A religion. A moment in childhood where you decided something about yourself that was never actually true.",
-      desc2: "The Evidence Hunt is about tracing the belief back to its source so you can see it for what it actually is — someone else's story that you have been living inside of. You cannot dismantle what you cannot see clearly. So we look.",
-      takeaways: [
-        "If you can name who handed you the belief, you can choose to hand it back.",
-        "Every belief that protected you once has a shelf life. Most of yours expired years ago.",
-        "Your job is not to forgive the source — your job is to recognize you are no longer there.",
-        "The belief did not betray you. The belief tried to keep you safe. Thank her, then update the firmware."
-      ],
-      actions: [
-        "Bring your Top 3 limiting beliefs from the Excavation into the fields below.",
-        "For each belief, answer all five origin questions. Do not move on until you have a real example, not just a yes or no.",
-        "Notice which belief belongs to someone else entirely. That is the one you can release first."
-      ],
-      beliefInquirySet: {
-        beliefLabel: "My limiting belief",
-        beliefPlaceholder: "Write the exact belief, in your own words. Example: \"Money always disappears as soon as I have it.\"",
-        questions: [
-          { suffix: "origin", label: "Where did this belief come from? Who said it first, modeled it, or made you feel it was true?", placeholder: "Name the person. The dynamic. The moment." },
-          { suffix: "age", label: "How old were you when you first started believing this?", placeholder: "Be specific. Estimate if you have to." },
-          { suffix: "protection", label: "Has this belief ever actually protected you from something? If yes — what?", placeholder: "Most beliefs are old protection. What was she guarding?" },
-          { suffix: "ownership", label: "Is this belief actually true — or did you inherit it from someone else's fear?", placeholder: "Whose fear was this, originally? Name them." },
-          { suffix: "cost", label: "What has this belief cost you so far?", placeholder: "Money, relationships, time, opportunities, peace. Be specific. Write the receipts." }
-        ]
-      }
-    },
-    {
-      id: 4, title: "Belief vs Fact", dur: "30-45 min", type: "beliefInquiry",
-      desc: "Your brain has been collecting evidence for these beliefs for years. That is why they feel so true. Every time you found a piece of evidence that confirmed the belief, your brain filed it. Every time you found a piece of evidence that contradicted the belief, your brain quietly let it pass. This is how a belief calcifies into a fact in your nervous system. We are going to reverse the process.",
-      desc2: "For each of your top three limiting beliefs, you are about to become a detective for the other side. Find the evidence against the belief. It is there. You have just been trained not to look for it. This exercise is designed to be uncomfortable — because what your brain has been calling a fact is about to be exposed as a story.",
-      takeaways: [
-        "A fact has measurable, repeatable evidence. A story has emotional weight. Confuse the two and you will live inside the story forever.",
-        "If you would not say it to your best friend about her, it is not a fact about you either.",
-        "The evidence against the belief has always been there. You have just been trained to look past it.",
-        "Once you can see the belief as a story, you cannot unsee it. That is the moment it loses its grip."
-      ],
-      actions: [
-        "Use the same three limiting beliefs you worked with in the Evidence Hunt.",
-        "For each one, answer all five interrogation questions honestly.",
-        "When you write the evidence against the belief, push past your first answer. There is always more there than you think."
-      ],
-      beliefInquirySet: {
-        beliefLabel: "My limiting belief (same as Lesson 3)",
-        beliefPlaceholder: "Bring forward the same belief you worked with in the Evidence Hunt.",
-        questions: [
-          { suffix: "factstory", label: "Is this a fact, or is this a story? How do you know the difference?", placeholder: "A fact is measurable. A story has feelings attached. Which is this?" },
-          { suffix: "evidenceFor", label: "What is the evidence this belief is true? List every piece you can find.", placeholder: "Be honest. Write all of it." },
-          { suffix: "evidenceAgainst", label: "What is the evidence this belief is NOT true? List every piece you can find.", placeholder: "Push past your first answer. There is more. Keep going." },
-          { suffix: "friend", label: "If your best friend told you she believed this about herself, what would you say to her?", placeholder: "Write what you would actually say. Use her name in your head." },
-          { suffix: "futurecost", label: "If this belief is a story and not a fact, what does it cost you to keep living inside it for another year?", placeholder: "Financially. Relationally. In your body. Be specific." }
-        ]
-      }
-    },
-    {
-      id: 5, title: "The Reframe + 5 Declarations", dur: "45-60 min", type: "reframe",
-      desc: "You have excavated the beliefs. You have traced them to their source. You have interrogated them as stories. Now we install the new code. For each of your top three limiting beliefs, you are going to write the exact opposite as your new ideal belief — and then find three real examples from your own life that prove the new belief is already possible. The proof matters. Your brain needs evidence it can hand-pick from your actual life, not affirmations it does not trust yet.",
-      desc2: "Then, at the end of this lesson, you will write your five I AM declarations. Present tense. Bold. As if they are already true — because at the frequency level, they already are. These five sentences become the foundation of your 21-day activation practice in Lesson 6.",
-      takeaways: [
-        "The new belief does not have to feel completely true yet. It has to be possible.",
-        "Three real examples from your own life is proof. Your brain cannot argue with your own history.",
-        "An I AM declaration is not a wish. It is an installation. You are choosing the identity the future is responding to.",
-        "Write the declarations as the woman you are becoming — not as a request to become her."
-      ],
-      actions: [
-        "For each of your three limiting beliefs, write the exact opposite as your new ideal belief.",
-        "For each new ideal belief, write three real examples from your own life that prove it is possible.",
-        "When you are done with all three, write your five I AM declarations at the bottom. Bold, present tense, as if already true.",
-        "These five declarations are what you will activate for 21 days in Lesson 6. Choose them with intention."
-      ],
-      reframeFields: [
-        {
-          id: "reframe-1", title: "Reframe One", intro: "The first limiting belief I am rewriting",
-          fields: [
-            { id: "reframe-1-old", label: "My limiting belief", placeholder: "The old story." },
-            { id: "reframe-1-new", label: "My new ideal belief (the exact opposite)", placeholder: "The new story. Bold. Possible. True at the frequency level." },
-            { id: "reframe-1-proof", label: "Three real examples from my life that prove the new belief is possible", placeholder: "1. ...\n2. ...\n3. ..." }
-          ]
-        },
-        {
-          id: "reframe-2", title: "Reframe Two", intro: "The second limiting belief I am rewriting",
-          fields: [
-            { id: "reframe-2-old", label: "My limiting belief", placeholder: "The old story." },
-            { id: "reframe-2-new", label: "My new ideal belief (the exact opposite)", placeholder: "The new story. Bold. Possible. True at the frequency level." },
-            { id: "reframe-2-proof", label: "Three real examples from my life that prove the new belief is possible", placeholder: "1. ...\n2. ...\n3. ..." }
-          ]
-        },
-        {
-          id: "reframe-3", title: "Reframe Three", intro: "The third limiting belief I am rewriting",
-          fields: [
-            { id: "reframe-3-old", label: "My limiting belief", placeholder: "The old story." },
-            { id: "reframe-3-new", label: "My new ideal belief (the exact opposite)", placeholder: "The new story. Bold. Possible. True at the frequency level." },
-            { id: "reframe-3-proof", label: "Three real examples from my life that prove the new belief is possible", placeholder: "1. ...\n2. ...\n3. ..." }
-          ]
-        }
-      ],
-      declarationsBlock: {
-        intro: "Your Five Declarations",
-        subIntro: "Write five I AM statements. Present tense. Bold. As if already true. These become your 21-day activation practice.",
-        fields: [
-          { id: "dec-1", label: "Declaration One", placeholder: "I AM..." },
-          { id: "dec-2", label: "Declaration Two", placeholder: "I AM..." },
-          { id: "dec-3", label: "Declaration Three", placeholder: "I AM..." },
-          { id: "dec-4", label: "Declaration Four", placeholder: "I AM..." },
-          { id: "dec-5", label: "Declaration Five", placeholder: "I AM..." }
-        ]
-      }
-    },
-    {
-      id: 6, title: "The 21-Day Activation", dur: "21 days", type: "tracker",
-      desc: "This is where the work stops being a concept and starts being a frequency. Your five declarations are written. Now we install them. Twenty-one days. One practice. No skipping. We chose 21 days because that is the minimum window your nervous system needs to begin treating a new belief as familiar — not foreign. Three weeks of repetition is the difference between a wish you said once and an identity you live inside.",
-      desc2: "Pick your method below. Then start. The tracker is here so you can see the streak build — and so the part of you that wants to abandon herself on Day 4 can see Days 1, 2, and 3 and remember she has already started becoming the woman who finishes.",
-      takeaways: [
-        "Repetition is not boring. Repetition is how the nervous system installs a new identity.",
-        "The day you do not feel like doing the practice is the day the practice matters most.",
-        "Consistency over perfection. If you miss a day, do not start over — pick back up. The Queen does not punish herself for being human.",
-        "By Day 21 you will not have to perform the declarations. They will be living inside you."
-      ],
-      actions: [
-        "Choose one method below. Just one. Commit.",
-        "Set a daily anchor — same time, same trigger, same place. Morning before phone is ideal.",
-        "Check off each day in the tracker after you complete your practice. Watch the streak build.",
-        "On Day 21, come back and journal what shifted. Then carry your declarations into Module 4."
-      ],
-      practiceMethods: [
-        {
-          id: "mirror",
-          title: "The Mirror Practice",
-          desc: "Write your 5 declarations on a notepad and make it your phone screensaver. Read them out loud every morning for 21 days, looking yourself in the eyes when you say them."
-        },
-        {
-          id: "recording",
-          title: "The Recording Practice",
-          desc: "Record yourself saying your 5 declarations out loud on your phone. Play it back every morning for 21 days — ideally while getting ready, driving, or moving, so the declarations bypass your conscious mind."
-        },
-        {
-          id: "journal",
-          title: "The Journal Practice",
-          desc: "Write your 5 declarations by hand in your journal every single morning for 21 days. Writing activates a different part of the brain than reading. The repetition is the practice."
-        }
-      ],
-      trackerReflectionFields: [
-        { id: "tracker-week1", prompt: "End of Week 1 (Day 7): What shifted? What resisted? What surprised you about the woman who showed up to do the practice?" },
-        { id: "tracker-week2", prompt: "End of Week 2 (Day 14): What is starting to feel familiar that used to feel foreign? Where in your life is the new belief showing up unsolicited?" },
-        { id: "tracker-week3", prompt: "End of Week 3 (Day 21): Read your declarations one more time. Are they still true for you? Which one needs to evolve? What is the next belief you are ready to install?" }
-      ]
-    }
-  ]
-};
+    <div class="pattern-grid">
+      <div class="pattern">overthinking</div>
+      <div class="pattern">self-protection</div>
+      <div class="pattern">hyper-independence</div>
+      <div class="pattern">people pleasing</div>
+      <div class="pattern">emotional exhaustion</div>
+      <div class="pattern">self-sabotage</div>
+    </div>
 
-const STORAGE_KEY = "quantumqueen-module3-v1";
+    <div class="thesis-card">
+      <p class="thesis-text">
+        You cannot sustainably create abundance from an identity <em>rooted in survival.</em>
+      </p>
+    </div>
+  </div>
+</section>
 
-function App() {
-  const [theme, setTheme] = useState("dark");
-  const [active, setActive] = useState(0);
-  const [done, setDone] = useState({});
-  const [journals, setJournals] = useState({});
-  const [mobileNav, setMobileNav] = useState(false);
-  const [saveStatus, setSaveStatus] = useState("");
-  const [loaded, setLoaded] = useState(false);
-  const [selectedMethod, setSelectedMethod] = useState("");
-  const [trackerDays, setTrackerDays] = useState({});
+<section class="bloc inside-section">
+  <div class="container">
+    <div class="section-eyebrow">Inside the Masterclass</div>
+    <h2 class="section-h">What you'll <em>learn</em></h2>
 
-  const C = theme === "dark" ? DARK : LIGHT;
+    <div class="lesson-list">
+      <div class="lesson"><div class="lesson-num">01</div><div class="lesson-text">Why manifestation alone often doesn't create lasting change</div></div>
+      <div class="lesson"><div class="lesson-num">02</div><div class="lesson-text">How subconscious survival identities shape your reality</div></div>
+      <div class="lesson"><div class="lesson-num">03</div><div class="lesson-text">Why your nervous system rejects what feels unfamiliar</div></div>
+      <div class="lesson"><div class="lesson-num">04</div><div class="lesson-text">The hidden patterns keeping you emotionally stuck</div></div>
+      <div class="lesson"><div class="lesson-num">05</div><div class="lesson-text">Why receiving is more important than attracting</div></div>
+      <div class="lesson"><div class="lesson-num">06</div><div class="lesson-text">The 4-step Quantum Queen Method for identity recalibration</div></div>
+      <div class="lesson"><div class="lesson-num">07</div><div class="lesson-text">How to stop collapsing after expansion</div></div>
+    </div>
+  </div>
+</section>
 
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        const s = JSON.parse(raw);
-        if (s.theme) setTheme(s.theme);
-        if (s.done) setDone(s.done);
-        if (s.journals) setJournals(s.journals);
-        if (s.selectedMethod) setSelectedMethod(s.selectedMethod);
-        if (s.trackerDays) setTrackerDays(s.trackerDays);
-      }
-    } catch (err) {}
-    setLoaded(true);
-  }, []);
-
-  useEffect(() => {
-    if (!loaded) return;
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ theme, done, journals, selectedMethod, trackerDays }));
-    } catch (err) {}
-  }, [theme, done, journals, selectedMethod, trackerDays, loaded]);
-
-  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
-  const toggleDone = (i) => setDone({ ...done, [i]: !done[i] });
-  const toggleDay = (day) => setTrackerDays({ ...trackerDays, [day]: !trackerDays[day] });
-
-  const updateJournal = (fieldId, text) => {
-    const existing = journals[fieldId] || {};
-    setJournals({ ...journals, [fieldId]: { text, savedAt: existing.savedAt } });
-  };
-
-  const getAllFieldIds = (lesson) => {
-    const ids = [];
-    if (lesson.journals) lesson.journals.forEach(j => ids.push(j.id));
-    if (lesson.excavationFields) lesson.excavationFields.forEach(f => ids.push(f.id));
-    if (lesson.beliefInquirySet) {
-      for (let i = 1; i <= 3; i++) {
-        ids.push("belief-" + lesson.id + "-" + i);
-        lesson.beliefInquirySet.questions.forEach(q => ids.push("belief-" + lesson.id + "-" + i + "-" + q.suffix));
-      }
-    }
-    if (lesson.reframeFields) lesson.reframeFields.forEach(r => r.fields.forEach(f => ids.push(f.id)));
-    if (lesson.declarationsBlock) lesson.declarationsBlock.fields.forEach(f => ids.push(f.id));
-    if (lesson.trackerReflectionFields) lesson.trackerReflectionFields.forEach(f => ids.push(f.id));
-    return ids;
-  };
-
-  const saveLessonJournals = () => {
-    const stamp = new Date().toISOString();
-    const next = { ...journals };
-    const lesson = MODULE_DATA.lessons[active];
-    const ids = getAllFieldIds(lesson);
-    ids.forEach(id => {
-      if (next[id] && next[id].text) next[id] = { ...next[id], savedAt: stamp };
-    });
-    setJournals(next);
-    setSaveStatus("Saved ✦");
-    setTimeout(() => setSaveStatus(""), 2000);
-  };
-
-  const getEntries = (lesson) => {
-    const out = [];
-    if (lesson.journals) lesson.journals.forEach(j => {
-      const en = journals[j.id];
-      if (en && en.text) out.push({ prompt: j.prompt, text: en.text });
-    });
-    if (lesson.excavationFields) lesson.excavationFields.forEach(f => {
-      const en = journals[f.id];
-      if (en && en.text) out.push({ prompt: f.prompt, text: en.text });
-    });
-    if (lesson.beliefInquirySet) {
-      for (let i = 1; i <= 3; i++) {
-        const beliefId = "belief-" + lesson.id + "-" + i;
-        const bEn = journals[beliefId];
-        if (bEn && bEn.text) {
-          out.push({ prompt: "Belief " + i + " — " + lesson.beliefInquirySet.beliefLabel, text: bEn.text });
-          lesson.beliefInquirySet.questions.forEach(q => {
-            const qEn = journals[beliefId + "-" + q.suffix];
-            if (qEn && qEn.text) out.push({ prompt: "Belief " + i + " — " + q.label, text: qEn.text });
-          });
-        }
-      }
-    }
-    if (lesson.reframeFields) lesson.reframeFields.forEach(r => {
-      r.fields.forEach(f => {
-        const en = journals[f.id];
-        if (en && en.text) out.push({ prompt: r.title + " — " + f.label, text: en.text });
-      });
-    });
-    if (lesson.declarationsBlock) lesson.declarationsBlock.fields.forEach(f => {
-      const en = journals[f.id];
-      if (en && en.text) out.push({ prompt: "Declaration — " + f.label, text: en.text });
-    });
-    if (lesson.trackerReflectionFields) {
-      const completedDays = Object.values(trackerDays).filter(Boolean).length;
-      if (selectedMethod) out.push({ prompt: "Practice Method", text: selectedMethod });
-      out.push({ prompt: "Days Completed", text: completedDays + " of 21" });
-      lesson.trackerReflectionFields.forEach(f => {
-        const en = journals[f.id];
-        if (en && en.text) out.push({ prompt: f.prompt, text: en.text });
-      });
-    }
-    return out;
-  };
-
-  const download = (filename, content) => {
-    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
-
-  const exportLesson = (lesson) => {
-    const entries = getEntries(lesson);
-    const body = entries.length === 0 ? "No entries yet." : entries.map(en => en.prompt + "\n\n" + en.text + "\n\n────────────").join("\n\n");
-    const content = "BADASS ALCHEMY · QUANTUM QUEEN\n" + MODULE_DATA.title + " — " + MODULE_DATA.subtitle + "\n" + lesson.title + "\nExported: " + new Date().toLocaleString() + "\n\n═════════════\n\n" + body;
-    download("quantum-queen-" + lesson.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") + ".txt", content);
-  };
-
-  const exportAll = () => {
-    const sections = MODULE_DATA.lessons.map(l => {
-      const ents = getEntries(l);
-      if (ents.length === 0) return null;
-      return l.title.toUpperCase() + "\n\n" + ents.map(en => en.prompt + "\n\n" + en.text).join("\n\n────────\n\n");
-    }).filter(Boolean).join("\n\n═════════════\n\n");
-    const content = "BADASS ALCHEMY · QUANTUM QUEEN\n" + MODULE_DATA.title + " — " + MODULE_DATA.subtitle + "\nFull Journal Export\nExported: " + new Date().toLocaleString() + "\n\n═════════════\n\n" + (sections || "No entries yet.");
-    download("quantum-queen-module-3-full-journal.txt", content);
-  };
-
-  const doneCount = Object.values(done).filter(Boolean).length;
-  const progress = Math.round((doneCount / MODULE_DATA.lessons.length) * 100);
-  const lesson = MODULE_DATA.lessons[active];
-  const sidebarOverlay = theme === "dark"
-    ? "linear-gradient(180deg, rgba(31,19,32,0.78) 0%, rgba(42,26,45,0.85) 100%)"
-    : "linear-gradient(180deg, rgba(251,245,248,0.88) 0%, rgba(245,232,239,0.92) 100%)";
-
-  return (
-    <div style={{ fontFamily: "'Montserrat',sans-serif", background: C.bg, color: C.txtSec, height: "100vh", display: "flex", flexDirection: "column", overflow: "hidden" }}>
-
-      {/* TOP BAR */}
-      <div style={{ background: BRAND_GRAD, padding: "0 24px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", flexShrink: 0, borderBottom: "1px solid " + C.border }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <button onClick={() => setMobileNav(!mobileNav)} className="mobile-only" style={{ background: "none", border: "none", color: "#3A1E33", fontSize: 20, cursor: "pointer", padding: 4 }}>☰</button>
-          <div style={{ width: 36, height: 36, borderRadius: 10, background: "rgba(255,255,255,0.3)", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(255,255,255,0.4)" }}>
-            <span style={{ color: "#3A1E33", fontSize: 16, fontWeight: 700 }}>✦</span>
-          </div>
-          <div>
-            <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 700, fontSize: 18, color: "#FFFFFF", lineHeight: 1 }}>Quantum Queen</div>
-            <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1.5, color: "#3A1E33", textTransform: "uppercase", marginTop: 3 }}>Badass Alchemy · Baddie Society</div>
-          </div>
-        </div>
-
-        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          <div style={{ display: "flex", gap: 24 }} className="desktop-only">
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, color: "#FFFFFF", textTransform: "uppercase", borderBottom: "2px solid #3A1E33", paddingBottom: 22, paddingTop: 22 }}>Classroom</span>
-          </div>
-          <button onClick={toggleTheme} style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.4)", borderRadius: 50, padding: "7px 14px", cursor: "pointer", color: "#3A1E33", fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase" }}>
-            <span style={{ fontSize: 13 }}>{theme === "dark" ? "☾" : "☀"}</span>
-            <span className="desktop-only">{theme === "dark" ? "Dark" : "Light"}</span>
-          </button>
-        </div>
+<section class="bloc notabout-section">
+  <div class="stars-bg"></div>
+  <div class="container-narrow">
+    <div class="notabout-content">
+      <div class="section-eyebrow">A clarification</div>
+      <h2 class="notabout-h">
+        This work is not about<br><em>becoming someone else</em>
+      </h2>
+      <div class="notabout-body">
+        <p>It's about releasing the version of yourself that was built around fear, scarcity, self-protection, and emotional survival.</p>
+        <p>The woman you are becoming <strong>already exists.</strong></p>
+        <p>Quantum Queen helps you become emotionally, mentally, and subconsciously available for the life you know you are meant for.</p>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div style={{ flex: 1, display: "flex", overflow: "hidden", position: "relative" }}>
-        {mobileNav && <div onClick={() => setMobileNav(false)} className="mobile-only" style={{ position: "absolute", inset: 0, background: "rgba(31,19,32,0.7)", zIndex: 99 }} />}
+<section class="cta-section">
+  <div class="stars-bg"></div>
+  <div class="cta-inner container">
+    <div class="coming-soon-mark"><span class="dot"></span>Masterclass Coming Soon</div>
+    <h2 class="cta-h">Ready before the<br>masterclass? <em>Let's talk.</em></h2>
+    <p class="cta-sub">Book a clarity call and we'll map out where you are, what's keeping you in survival mode, and the path to the version of you that's already on the other side.</p>
+    <a href="https://api.leadconnectorhq.com/widget/booking/1kswvKdTmH7BMsMIIxU5" class="btn-primary" target="_blank" rel="noopener">Book Your Clarity Call</a>
+  </div>
+</section>
 
-        <div className={mobileNav ? "sidebar open" : "sidebar"} style={{
-          width: 300, minWidth: 300, display: "flex", flexDirection: "column", overflow: "hidden",
-          backgroundImage: sidebarOverlay + ", url('" + SIDEBAR_IMG + "')",
-          backgroundSize: "cover", backgroundPosition: "center",
-          borderRight: "1px solid " + C.border
-        }}>
-          <div style={{ padding: "26px 22px 22px", borderBottom: "1px solid " + C.border, background: theme === "dark" ? "rgba(22,12,24,0.35)" : "rgba(255,255,255,0.2)" }}>
-            <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: 1.5, color: theme === "dark" ? C.accentLt : C.accent, textTransform: "uppercase", marginBottom: 6 }}>{MODULE_DATA.title}</div>
-            <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, fontWeight: 700, color: C.txt, lineHeight: 1.15, marginBottom: 4 }}>{MODULE_DATA.subtitle}</div>
-            <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 12, fontStyle: "italic", color: theme === "dark" ? C.detail : C.accent, marginBottom: 16, lineHeight: 1.4 }}>{MODULE_DATA.tagline}</div>
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <div style={{ flex: 1, height: 5, background: theme === "dark" ? "rgba(250,239,244,0.1)" : "rgba(110,56,101,0.15)", borderRadius: 100, overflow: "hidden" }}>
-                <div style={{ height: "100%", background: "linear-gradient(90deg," + C.accent + "," + C.accentLt + ")", width: progress + "%", borderRadius: 100, transition: "width .5s" }} />
-              </div>
-              <div style={{ fontSize: 9, fontWeight: 700, color: theme === "dark" ? C.accentLt : C.accent, minWidth: 30, textAlign: "right" }}>{progress}%</div>
-            </div>
-          </div>
+<section class="bloc story-section">
+  <div class="container">
+    <div class="section-eyebrow">A note from Danielle</div>
+    <h2 class="section-h">For years I thought<br>I needed <em>more healing.</em></h2>
 
-          <div style={{ flex: 1, overflowY: "auto", padding: "14px 12px 24px" }}>
-            {MODULE_DATA.lessons.map((l, i) => {
-              const isActive = active === i;
-              const isDone = !!done[i];
-              return (
-                <div key={i} onClick={() => { setActive(i); setMobileNav(false); }} style={{
-                  display: "flex", alignItems: "center", gap: 11, padding: "12px 14px", borderRadius: 12, cursor: "pointer", marginBottom: 4,
-                  background: isActive ? (theme === "dark" ? "rgba(110,56,101,0.45)" : "rgba(255,255,255,0.7)") : (theme === "dark" ? "rgba(22,12,24,0.3)" : "rgba(255,255,255,0.35)"),
-                  border: "1px solid " + (isActive ? C.borderMid : "transparent")
-                }}>
-                  <div style={{ width: 22, height: 22, minWidth: 22, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, background: isDone ? "linear-gradient(135deg," + C.accent + "," + C.accentLt + ")" : "transparent", border: isDone ? "none" : "1.5px solid " + C.borderMid }}>
-                    {isDone && <span style={{ color: "#FFFFFF", fontSize: 12, fontWeight: 700 }}>✓</span>}
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 12.5, color: isActive ? C.txt : C.txtSec, fontWeight: isActive ? 700 : 500, lineHeight: 1.3 }}>{l.title}</div>
-                    <div style={{ fontSize: 8, color: theme === "dark" ? C.txtFaded : C.txtMuted, letterSpacing: 0.5, marginTop: 2, fontWeight: 600 }}>{l.dur}</div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          <div style={{ padding: "14px 16px", borderTop: "1px solid " + C.border, background: theme === "dark" ? "rgba(22,12,24,0.5)" : "rgba(255,255,255,0.4)" }}>
-            <button onClick={exportAll} style={{ width: "100%", fontSize: 9, fontWeight: 700, letterSpacing: 1.2, color: C.txt, background: "transparent", padding: "11px 12px", borderRadius: 50, border: "1px solid " + C.borderMid, cursor: "pointer", textTransform: "uppercase" }}>
-              ⬇ Download All Journals
-            </button>
-          </div>
-        </div>
-
-        <div style={{ flex: 1, overflowY: "auto", background: C.bg }}>
-          <div style={{ maxWidth: 720, padding: "36px 40px 80px" }} className="main-inner lesson-content" key={active + "-" + theme}>
-
-            <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, color: C.accent, textTransform: "uppercase", marginBottom: 10 }}>
-              Lesson {lesson.id + 1} of {MODULE_DATA.lessons.length} · {lesson.dur}
-            </div>
-
-            <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 16, marginBottom: 22 }} className="lesson-top">
-              <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 700, fontSize: "clamp(26px,3.5vw,34px)", color: C.txt, lineHeight: 1.15 }}>{lesson.title}</h1>
-              <button onClick={() => toggleDone(active)} style={{ flexShrink: 0, marginTop: 6, fontSize: 9, fontWeight: 700, letterSpacing: 1.2, padding: "10px 18px", borderRadius: 50, border: done[active] ? "none" : "1px solid " + C.borderMid, cursor: "pointer", background: done[active] ? "linear-gradient(135deg," + C.accent + "," + C.accentLt + ")" : "transparent", color: done[active] ? C.moonPrl : C.txtMuted, textTransform: "uppercase" }}>
-                {done[active] ? "✦ Complete" : "○ Mark Complete"}
-              </button>
-            </div>
-
-            {lesson.type === "video" && (
-              <div style={{ background: BRAND_GRAD, borderRadius: 14, border: "1px solid " + C.borderMid, padding: "24px 26px", marginBottom: 28, boxShadow: theme === "light" ? C.shadow : "none" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-                  <div style={{ width: 52, height: 52, minWidth: 52, borderRadius: "50%", background: "rgba(255,255,255,0.25)", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(255,255,255,0.4)" }}>
-                    <span style={{ fontSize: 20, color: "#FFFFFF" }}>▶</span>
-                  </div>
-                  <div>
-                    <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, color: "#3A1E33", textTransform: "uppercase", marginBottom: 6 }}>Video Lesson</div>
-                    <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 20, fontWeight: 700, color: "#FFFFFF", lineHeight: 1.35 }}>Watch this lesson inside the <em style={{ color: "#2A1424", fontStyle: "italic", fontWeight: 700 }}>Skool classroom.</em></div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            <div style={{ fontWeight: 500, fontSize: 14.5, lineHeight: 1.8, color: C.txtSec, marginBottom: lesson.desc2 ? 18 : 36 }}>
-              {lesson.desc}
-            </div>
-
-            {lesson.desc2 && (
-              <div style={{ fontWeight: 500, fontSize: 14.5, lineHeight: 1.8, color: C.txtSec, marginBottom: 36, fontStyle: "italic", paddingLeft: 18, borderLeft: "2px solid " + C.borderMid }}>
-                {lesson.desc2}
-              </div>
-            )}
-
-            <SectionHeader icon="🌙" label="Key Takeaways" color={C.accent} />
-            <div style={{ marginBottom: 36 }}>
-              {lesson.takeaways.map((t, i) => (
-                <div key={i} style={{ background: C.bgCard, borderRadius: 12, border: "1px solid " + C.border, padding: "14px 18px", marginBottom: 8, display: "flex", alignItems: "flex-start", gap: 12, boxShadow: theme === "light" ? "0 2px 8px rgba(110,56,101,0.06)" : "none" }}>
-                  <span style={{ color: C.accent, fontSize: 13, marginTop: 3, flexShrink: 0 }}>✦</span>
-                  <span style={{ fontWeight: 500, fontSize: 13.5, color: C.txtSec, lineHeight: 1.7 }}>{t}</span>
-                </div>
-              ))}
-            </div>
-
-            <SectionHeader icon="⭐" label="Action Steps" color={C.accent} />
-            <div style={{ marginBottom: 36 }}>
-              {lesson.actions.map((a, i) => (
-                <div key={i} style={{ background: C.bgCard, borderRadius: 12, border: "1px solid " + C.border, padding: "14px 18px", marginBottom: 8, display: "flex", alignItems: "center", gap: 14, boxShadow: theme === "light" ? "0 2px 8px rgba(110,56,101,0.06)" : "none" }}>
-                  <div style={{ width: 28, height: 28, minWidth: 28, borderRadius: "50%", background: "linear-gradient(135deg," + C.accent + "," + C.darkMid + ")", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 700, color: C.moonPrl, flexShrink: 0 }}>0{i + 1}</div>
-                  <span style={{ fontWeight: 500, fontSize: 13.5, color: C.txtSec, lineHeight: 1.65 }}>{a}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* EXCAVATION — 14 rapid-fire sentence completions */}
-            {lesson.excavationFields && (
-              <div style={{ marginBottom: 36 }}>
-                <SectionHeader icon="🔮" label="The 14 Sentence Completions" color={C.accent} status={saveStatus} />
-                <div style={{ background: C.bgCard, borderRadius: 14, border: "1px solid " + C.border, padding: 24, marginBottom: 14, boxShadow: theme === "light" ? C.shadow : "none" }}>
-                  <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontWeight: 700, fontSize: 18, color: theme === "dark" ? C.detail : C.accent, marginBottom: 6, lineHeight: 1.35 }}>Write the first thing that comes up. Do not edit.</div>
-                  <div style={{ fontWeight: 500, fontSize: 12, color: C.txtMuted, lineHeight: 1.6, fontStyle: "italic", marginBottom: 20 }}>
-                    Especially do not skip the ones that make you uncomfortable.
-                  </div>
-                  {lesson.excavationFields.map((f, i) => {
-                    const entry = journals[f.id];
-                    return (
-                      <div key={f.id} style={{ padding: "16px 0", borderBottom: i < lesson.excavationFields.length - 1 ? "1px solid " + C.border : "none" }}>
-                        <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                          <div style={{ fontSize: 11, fontWeight: 800, color: C.accent, letterSpacing: 1, minWidth: 28, marginTop: 14 }}>{String(i + 1).padStart(2, "0")}</div>
-                          <div style={{ flex: 1 }}>
-                            <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontWeight: 700, fontSize: 17, color: theme === "dark" ? C.detail : C.accent, marginBottom: 8, lineHeight: 1.4 }}>{f.prompt}</div>
-                            {entry && entry.savedAt && (
-                              <div style={{ fontSize: 8, fontWeight: 700, color: C.txtFaded, letterSpacing: 1, marginBottom: 6, textTransform: "uppercase" }}>Last saved {new Date(entry.savedAt).toLocaleString()}</div>
-                            )}
-                            <textarea
-                              value={(entry && entry.text) || ""}
-                              onChange={(ev) => updateJournal(f.id, ev.target.value)}
-                              placeholder="First thing that comes up..."
-                              rows={2}
-                              style={{ width: "100%", background: C.inputBg, border: "1px solid " + C.border, borderRadius: 10, padding: "10px 14px", fontSize: 13.5, color: C.txtSec, lineHeight: 1.6, resize: "vertical" }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-                <SaveExportButtons onSave={saveLessonJournals} onExport={() => exportLesson(lesson)} C={C} saveLabel="✦ Save Excavation" />
-                <div style={{ fontWeight: 500, fontSize: 11, color: C.txtFaded, lineHeight: 1.7, marginTop: 14, letterSpacing: 0.3 }}>
-                  Your entries save to this browser. Download the .txt to upload to Google Drive, Notion, or anywhere you keep your reflections.
-                </div>
-              </div>
-            )}
-
-            {/* JOURNALS — money story style */}
-            {lesson.journals && (
-              <div style={{ marginBottom: 36 }}>
-                <SectionHeader icon="🔮" label="Trace the Inheritance" color={C.accent} status={saveStatus} />
-                {lesson.journals.map(j => {
-                  const entry = journals[j.id];
-                  return (
-                    <div key={j.id} style={{ background: C.bgCard, borderRadius: 14, border: "1px solid " + C.border, padding: 22, marginBottom: 14, boxShadow: theme === "light" ? C.shadow : "none" }}>
-                      <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontWeight: 700, fontSize: 17, color: theme === "dark" ? C.detail : C.accent, marginBottom: 6, lineHeight: 1.4 }}>{j.prompt}</div>
-                      {entry && entry.savedAt && (
-                        <div style={{ fontSize: 8, fontWeight: 700, color: C.txtFaded, letterSpacing: 1, marginBottom: 12, textTransform: "uppercase" }}>Last saved {new Date(entry.savedAt).toLocaleString()}</div>
-                      )}
-                      <textarea
-                        value={(entry && entry.text) || ""}
-                        onChange={(ev) => updateJournal(j.id, ev.target.value)}
-                        placeholder="Write what's true for you today, Queen..."
-                        rows={6}
-                        style={{ width: "100%", background: C.inputBg, border: "1px solid " + C.border, borderRadius: 10, padding: "14px 16px", fontSize: 13.5, color: C.txtSec, lineHeight: 1.75, resize: "vertical", marginTop: 8 }}
-                      />
-                    </div>
-                  );
-                })}
-                <SaveExportButtons onSave={saveLessonJournals} onExport={() => exportLesson(lesson)} C={C} saveLabel="✦ Save Entries" />
-                <div style={{ fontWeight: 500, fontSize: 11, color: C.txtFaded, lineHeight: 1.7, marginTop: 14, letterSpacing: 0.3 }}>
-                  Your entries save to this browser. Download the .txt to upload to Google Drive, Notion, or anywhere you keep your reflections.
-                </div>
-              </div>
-            )}
-
-            {/* BELIEF INQUIRY — 3 beliefs × 5 questions each */}
-            {lesson.beliefInquirySet && (
-              <div style={{ marginBottom: 36 }}>
-                <SectionHeader icon="🔮" label="Your Top 3 Limiting Beliefs" color={C.accent} status={saveStatus} />
-                {[1, 2, 3].map(num => {
-                  const beliefId = "belief-" + lesson.id + "-" + num;
-                  const beliefEntry = journals[beliefId];
-                  return (
-                    <div key={num} style={{ background: C.bgCard, borderRadius: 14, border: "1px solid " + C.border, padding: 24, marginBottom: 14, boxShadow: theme === "light" ? C.shadow : "none" }}>
-                      <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, color: C.accent, textTransform: "uppercase", marginBottom: 4 }}>Limiting Belief {num}</div>
-                      <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontWeight: 700, fontSize: 19, color: theme === "dark" ? C.detail : C.accent, marginBottom: 14, lineHeight: 1.3 }}>{lesson.beliefInquirySet.beliefLabel}</div>
-                      <textarea
-                        value={(beliefEntry && beliefEntry.text) || ""}
-                        onChange={(ev) => updateJournal(beliefId, ev.target.value)}
-                        placeholder={lesson.beliefInquirySet.beliefPlaceholder}
-                        rows={2}
-                        style={{ width: "100%", background: C.inputBg, border: "1px solid " + C.border, borderRadius: 10, padding: "12px 14px", fontSize: 13.5, color: C.txtSec, lineHeight: 1.65, resize: "vertical", marginBottom: 16 }}
-                      />
-                      {lesson.beliefInquirySet.questions.map(q => {
-                        const qid = beliefId + "-" + q.suffix;
-                        const qEntry = journals[qid];
-                        return (
-                          <div key={qid} style={{ marginBottom: 14 }}>
-                            <div style={{ fontWeight: 700, fontSize: 12, color: C.txtSec, marginBottom: 6, letterSpacing: 0.3 }}>{q.label}</div>
-                            <textarea
-                              value={(qEntry && qEntry.text) || ""}
-                              onChange={(ev) => updateJournal(qid, ev.target.value)}
-                              placeholder={q.placeholder}
-                              rows={2}
-                              style={{ width: "100%", background: C.inputBg, border: "1px solid " + C.border, borderRadius: 10, padding: "12px 14px", fontSize: 13.5, color: C.txtSec, lineHeight: 1.6, resize: "vertical" }}
-                            />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  );
-                })}
-                <SaveExportButtons onSave={saveLessonJournals} onExport={() => exportLesson(lesson)} C={C} saveLabel="✦ Save Inquiry" />
-                <div style={{ fontWeight: 500, fontSize: 11, color: C.txtFaded, lineHeight: 1.7, marginTop: 14, letterSpacing: 0.3 }}>
-                  Your entries save to this browser. Download the .txt to upload to Google Drive, Notion, or anywhere you keep your reflections.
-                </div>
-              </div>
-            )}
-
-            {/* REFRAME + 5 DECLARATIONS */}
-            {lesson.reframeFields && (
-              <div style={{ marginBottom: 36 }}>
-                <SectionHeader icon="🔮" label="The Reframe" color={C.accent} status={saveStatus} />
-                {lesson.reframeFields.map(r => (
-                  <div key={r.id} style={{ background: C.bgCard, borderRadius: 14, border: "1px solid " + C.border, padding: 24, marginBottom: 14, boxShadow: theme === "light" ? C.shadow : "none" }}>
-                    <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, color: C.accent, textTransform: "uppercase", marginBottom: 4 }}>{r.title}</div>
-                    <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontWeight: 700, fontSize: 19, color: theme === "dark" ? C.detail : C.accent, marginBottom: 18, lineHeight: 1.3 }}>{r.intro}</div>
-                    {r.fields.map(f => (
-                      <div key={f.id} style={{ marginBottom: 14 }}>
-                        <div style={{ fontWeight: 700, fontSize: 12, color: C.txtSec, marginBottom: 6, letterSpacing: 0.3 }}>{f.label}</div>
-                        <textarea
-                          value={(journals[f.id] && journals[f.id].text) || ""}
-                          onChange={(ev) => updateJournal(f.id, ev.target.value)}
-                          placeholder={f.placeholder || ""}
-                          rows={f.id.includes("proof") ? 4 : 2}
-                          style={{ width: "100%", background: C.inputBg, border: "1px solid " + C.border, borderRadius: 10, padding: "12px 14px", fontSize: 13.5, color: C.txtSec, lineHeight: 1.6, resize: "vertical" }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                ))}
-
-                {/* 5 DECLARATIONS BLOCK */}
-                {lesson.declarationsBlock && (
-                  <div style={{ background: BRAND_GRAD, borderRadius: 14, border: "1px solid rgba(255,255,255,0.25)", padding: 26, marginBottom: 14, marginTop: 22, boxShadow: theme === "light" ? "0 6px 24px rgba(110,56,101,0.2)" : "0 6px 24px rgba(0,0,0,0.3)" }}>
-                    <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, color: "#3A1E33", textTransform: "uppercase", marginBottom: 6 }}>✦ {lesson.declarationsBlock.intro}</div>
-                    <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontWeight: 700, fontSize: 20, color: "#FFFFFF", marginBottom: 18, lineHeight: 1.35 }}>{lesson.declarationsBlock.subIntro}</div>
-                    {lesson.declarationsBlock.fields.map(f => (
-                      <div key={f.id} style={{ marginBottom: 12 }}>
-                        <div style={{ fontWeight: 700, fontSize: 10, color: "#2A1424", marginBottom: 6, letterSpacing: 1.5, textTransform: "uppercase" }}>{f.label}</div>
-                        <textarea
-                          value={(journals[f.id] && journals[f.id].text) || ""}
-                          onChange={(ev) => updateJournal(f.id, ev.target.value)}
-                          placeholder={f.placeholder}
-                          rows={2}
-                          style={{ width: "100%", background: "rgba(255,255,255,0.92)", border: "1px solid rgba(255,255,255,0.4)", borderRadius: 10, padding: "12px 14px", fontSize: 14, color: "#2A1424", lineHeight: 1.6, resize: "vertical", fontWeight: 600 }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                <SaveExportButtons onSave={saveLessonJournals} onExport={() => exportLesson(lesson)} C={C} saveLabel="✦ Save Reframe + Declarations" />
-                <div style={{ fontWeight: 500, fontSize: 11, color: C.txtFaded, lineHeight: 1.7, marginTop: 14, letterSpacing: 0.3 }}>
-                  Carry your five declarations into Lesson 6 — the 21-Day Activation.
-                </div>
-              </div>
-            )}
-
-            {/* 21-DAY TRACKER */}
-            {lesson.type === "tracker" && (
-              <div style={{ marginBottom: 36 }}>
-
-                {/* DECLARATIONS DISPLAY */}
-                <SectionHeader icon="✨" label="Your Five Declarations" color={C.accent} />
-                <div style={{ background: C.bgCard, borderRadius: 14, border: "1px solid " + C.border, padding: 22, marginBottom: 28, boxShadow: theme === "light" ? C.shadow : "none" }}>
-                  {["dec-1", "dec-2", "dec-3", "dec-4", "dec-5"].map((id, i) => {
-                    const dec = journals[id];
-                    const text = (dec && dec.text) ? dec.text : null;
-                    return (
-                      <div key={id} style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "10px 0", borderBottom: i < 4 ? "1px solid " + C.border : "none" }}>
-                        <div style={{ fontSize: 11, fontWeight: 800, color: C.accent, letterSpacing: 1, minWidth: 22, marginTop: 2 }}>0{i + 1}</div>
-                        <div style={{ flex: 1, fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: 17, fontWeight: 700, color: text ? (theme === "dark" ? C.detail : C.accent) : C.txtFaded, lineHeight: 1.45 }}>
-                          {text || "Write your declaration in Lesson 5 — The Reframe."}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* METHOD SELECT */}
-                <SectionHeader icon="⭐" label="Choose Your Practice Method" color={C.accent} />
-                <div style={{ marginBottom: 28 }}>
-                  {lesson.practiceMethods.map(m => {
-                    const isSelected = selectedMethod === m.title;
-                    return (
-                      <div key={m.id} onClick={() => setSelectedMethod(m.title)} style={{
-                        background: isSelected ? BRAND_GRAD : C.bgCard,
-                        borderRadius: 14,
-                        border: "1px solid " + (isSelected ? "rgba(255,255,255,0.25)" : C.border),
-                        padding: "18px 22px", marginBottom: 10, cursor: "pointer",
-                        boxShadow: theme === "light" ? (isSelected ? "0 6px 20px rgba(110,56,101,0.2)" : "0 2px 8px rgba(110,56,101,0.06)") : "none",
-                        transition: "all .2s"
-                      }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                          <div style={{ width: 22, height: 22, minWidth: 22, borderRadius: "50%", background: isSelected ? "rgba(255,255,255,0.95)" : "transparent", border: isSelected ? "none" : "1.5px solid " + C.borderMid, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                            {isSelected && <div style={{ width: 10, height: 10, borderRadius: "50%", background: MAUVE_DEEP }} />}
-                          </div>
-                          <div style={{ flex: 1 }}>
-                            <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontWeight: 700, fontSize: 18, color: isSelected ? "#FFFFFF" : (theme === "dark" ? C.detail : C.accent), marginBottom: 4 }}>{m.title}</div>
-                            <div style={{ fontWeight: 500, fontSize: 13, color: isSelected ? "#2A1424" : C.txtSec, lineHeight: 1.6 }}>{m.desc}</div>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* 21 DAY TRACKER GRID */}
-                <SectionHeader icon="🌙" label="Your 21-Day Tracker" color={C.accent} status={Object.values(trackerDays).filter(Boolean).length + " of 21"} />
-                <div style={{ background: C.bgCard, borderRadius: 14, border: "1px solid " + C.border, padding: 24, marginBottom: 28, boxShadow: theme === "light" ? C.shadow : "none" }}>
-                  <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontWeight: 700, fontSize: 17, color: theme === "dark" ? C.detail : C.accent, marginBottom: 6, lineHeight: 1.4 }}>Tap each day after you complete your practice.</div>
-                  <div style={{ fontWeight: 500, fontSize: 12, color: C.txtMuted, lineHeight: 1.6, fontStyle: "italic", marginBottom: 20 }}>
-                    If you miss a day, do not start over. The Queen does not punish herself for being human.
-                  </div>
-                  <div className="tracker-grid" style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: 8, marginBottom: 14 }}>
-                    {Array.from({ length: 21 }, (_, i) => {
-                      const day = i + 1;
-                      const isChecked = !!trackerDays[day];
-                      return (
-                        <div key={day} onClick={() => toggleDay(day)} style={{
-                          aspectRatio: "1",
-                          borderRadius: 12,
-                          background: isChecked ? "linear-gradient(135deg," + MAUVE_LIGHT + "," + MAUVE_DEEP + ")" : "transparent",
-                          border: "1.5px solid " + (isChecked ? "transparent" : C.borderMid),
-                          display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-                          cursor: "pointer",
-                          transition: "all .2s",
-                          minHeight: 56
-                        }}>
-                          <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1, color: isChecked ? "rgba(255,255,255,0.85)" : C.txtFaded, textTransform: "uppercase", marginBottom: 2 }}>Day</div>
-                          <div style={{ fontSize: 18, fontWeight: 700, color: isChecked ? "#FFFFFF" : C.txtMuted, fontFamily: "'Cormorant Garamond',serif" }}>{day}</div>
-                          {isChecked && <div style={{ fontSize: 10, color: "#FFFFFF", marginTop: 2 }}>✓</div>}
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div style={{ marginTop: 20, paddingTop: 18, borderTop: "1px solid " + C.border, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 14, flexWrap: "wrap" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "linear-gradient(135deg," + C.accent + "," + C.accentLt + ")", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 17, fontWeight: 700, color: "#FFFFFF", fontFamily: "'Cormorant Garamond',serif" }}>
-                        {Object.values(trackerDays).filter(Boolean).length}
-                      </div>
-                      <div>
-                        <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1.5, color: C.accent, textTransform: "uppercase" }}>Days Activated</div>
-                        <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: 14, color: C.txtSec, marginTop: 2 }}>
-                          {Object.values(trackerDays).filter(Boolean).length === 21 ? "You did it, Queen." : Object.values(trackerDays).filter(Boolean).length >= 14 ? "The final week — stay." : Object.values(trackerDays).filter(Boolean).length >= 7 ? "She is starting to feel familiar." : Object.values(trackerDays).filter(Boolean).length >= 1 ? "You have started." : "Begin when you are ready."}
-                        </div>
-                      </div>
-                    </div>
-                    {Object.values(trackerDays).filter(Boolean).length > 0 && (
-                      <button onClick={() => { if (window.confirm("Reset all 21 days? This cannot be undone.")) setTrackerDays({}); }} style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1, color: C.txtMuted, background: "transparent", padding: "9px 16px", borderRadius: 50, border: "1px solid " + C.borderMid, cursor: "pointer", textTransform: "uppercase" }}>Reset Tracker</button>
-                    )}
-                  </div>
-                </div>
-
-                {/* WEEKLY REFLECTIONS */}
-                <SectionHeader icon="🔮" label="Weekly Reflections" color={C.accent} status={saveStatus} />
-                {lesson.trackerReflectionFields.map(f => {
-                  const entry = journals[f.id];
-                  return (
-                    <div key={f.id} style={{ background: C.bgCard, borderRadius: 14, border: "1px solid " + C.border, padding: 22, marginBottom: 14, boxShadow: theme === "light" ? C.shadow : "none" }}>
-                      <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontWeight: 700, fontSize: 17, color: theme === "dark" ? C.detail : C.accent, marginBottom: 6, lineHeight: 1.4 }}>{f.prompt}</div>
-                      {entry && entry.savedAt && (
-                        <div style={{ fontSize: 8, fontWeight: 700, color: C.txtFaded, letterSpacing: 1, marginBottom: 12, textTransform: "uppercase" }}>Last saved {new Date(entry.savedAt).toLocaleString()}</div>
-                      )}
-                      <textarea
-                        value={(entry && entry.text) || ""}
-                        onChange={(ev) => updateJournal(f.id, ev.target.value)}
-                        placeholder="What is true at this point in the practice?"
-                        rows={5}
-                        style={{ width: "100%", background: C.inputBg, border: "1px solid " + C.border, borderRadius: 10, padding: "14px 16px", fontSize: 13.5, color: C.txtSec, lineHeight: 1.75, resize: "vertical", marginTop: 8 }}
-                      />
-                    </div>
-                  );
-                })}
-                <SaveExportButtons onSave={saveLessonJournals} onExport={() => exportLesson(lesson)} C={C} saveLabel="✦ Save Reflections" />
-                <div style={{ fontWeight: 500, fontSize: 11, color: C.txtFaded, lineHeight: 1.7, marginTop: 14, letterSpacing: 0.3 }}>
-                  On Day 21, carry your activated declarations into Module 4. You will be a different woman than the one who started.
-                </div>
-              </div>
-            )}
-
-            <div style={{ marginTop: 44, paddingTop: 28, borderTop: "1px solid " + C.border, display: "flex", gap: 12, justifyContent: "space-between", alignItems: "center" }} className="lesson-bottom">
-              {active > 0 ? (
-                <button onClick={() => setActive(active - 1)} style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1, color: C.txtMuted, background: "transparent", padding: "12px 22px", borderRadius: 50, border: "1px solid " + C.borderMid, cursor: "pointer", textTransform: "uppercase" }}>← Previous</button>
-              ) : <span />}
-              {active < MODULE_DATA.lessons.length - 1 && (
-                <button onClick={() => setActive(active + 1)} style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1, color: C.moonPrl, background: "linear-gradient(135deg," + C.accent + "," + C.darkMid + ")", padding: "13px 24px", borderRadius: 50, border: "none", cursor: "pointer", textTransform: "uppercase" }}>Next Lesson →</button>
-              )}
-            </div>
-
-            <div style={{ marginTop: 56, paddingTop: 28, borderTop: "1px solid " + C.border, textAlign: "center" }}>
-              <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 18, fontStyle: "italic", color: C.accent, marginBottom: 6 }}>You are the alchemy.</div>
-              <div style={{ fontSize: 8, fontWeight: 700, color: C.txtFaded, letterSpacing: 2, textTransform: "uppercase" }}>Badass Alchemy · Baddie Society · Quantum Queen</div>
-            </div>
-
-          </div>
+    <div class="story-grid">
+      <div class="story-body">
+        <p>For years, I believed I needed more confidence, more healing, or another breakthrough.</p>
+        <p>But underneath it all, I was still operating from survival mode.</p>
+        <p>I looked functional externally&hellip; but internally I was overthinking, self-abandoning, emotionally exhausted, and constantly trying to control outcomes.</p>
+        <p><em>Everything changed when I stopped trying to "manifest harder" and started rebuilding my identity at the root.</em></p>
+        <p>Now I help ambitious women release subconscious survival patterns so they can safely receive, hold, and sustain more abundance, love, visibility, and self-trust.</p>
+        <div class="story-signature">
+          <div class="sig-line"></div>
+          <div class="sig-name">Danielle Pettee</div>
         </div>
       </div>
     </div>
-  );
-}
+  </div>
+</section>
 
-function SectionHeader({ icon, label, color, status }) {
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-      <span style={{ fontSize: 16 }}>{icon}</span>
-      <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: 2, color: color, textTransform: "uppercase" }}>{label}</span>
-      {status && <span style={{ marginLeft: "auto", fontSize: 9, fontWeight: 700, letterSpacing: 1, color: color }}>{status}</span>}
-    </div>
-  );
-}
+<section class="final-section">
+  <div class="final-content container">
+    <div class="final-eyebrow">She's already inside you.</div>
+    <h2 class="final-h">The woman you are becoming<br><em>already exists.</em></h2>
+    <p class="final-q">The question is &mdash; are you finally ready to stop protecting the <em>identity that's kept her trapped?</em></p>
+    <a href="https://api.leadconnectorhq.com/widget/booking/1kswvKdTmH7BMsMIIxU5" class="btn-primary" target="_blank" rel="noopener">Book Your Clarity Call</a>
+  </div>
+</section>
 
-function SaveExportButtons({ onSave, onExport, C, saveLabel }) {
-  return (
-    <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 4 }}>
-      <button onClick={onSave} style={{ flex: 1, minWidth: 120, fontSize: 10, fontWeight: 700, letterSpacing: 1, color: C.moonPrl, background: "linear-gradient(135deg," + C.accent + "," + C.darkMid + ")", padding: "12px 20px", borderRadius: 50, border: "none", cursor: "pointer", textTransform: "uppercase" }}>{saveLabel}</button>
-      <button onClick={onExport} style={{ flex: 1, minWidth: 120, fontSize: 10, fontWeight: 700, letterSpacing: 1, color: C.txt, background: "transparent", padding: "11px 20px", borderRadius: 50, border: "1px solid " + C.borderMid, cursor: "pointer", textTransform: "uppercase" }}>⬇ Download .txt</button>
-    </div>
-  );
-}
-
-// Mount
-document.getElementById('loading').style.display = 'none';
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
-</script>
+<footer>
+  <div class="footer-brand">Beautiful <span>Badass</span></div>
+  <div class="footer-tag">From scarcity to sovereign.</div>
+  <div class="footer-divider"></div>
+  <div class="footer-signoff">You are the alchemy. &#10026;</div>
+  <div class="footer-meta">Badass Alchemy &middot; Baddie Society &middot; Quantum Queen</div>
+</footer>
 
 </body>
 </html>
