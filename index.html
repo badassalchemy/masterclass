@@ -61,30 +61,37 @@
   .brand-mark span{color:var(--accent-lt);}
   .top-cta{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.8px;color:var(--accent-lt);text-transform:uppercase;text-decoration:none;padding:11px 22px;border:1px solid var(--border-strong);border-radius:30px;transition:all 0.3s ease;}
   .top-cta:hover{background:var(--accent);color:var(--moon);border-color:var(--accent);}
-  .hero{position:relative;background:var(--hero-grad);padding:140px 0 120px;overflow:hidden;text-align:center;}
-  .hero::before{content:"";position:absolute;inset:0;background:var(--glow);pointer-events:none;}
-  .hero::after{content:"";position:absolute;inset:0;background:var(--glow-2);pointer-events:none;}
-  .hero-content{position:relative;z-index:2;}
-  .eyebrow{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--detail);letter-spacing:0.5px;margin-bottom:10px;}
-  .kicker{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:4.5px;text-transform:uppercase;color:var(--accent-lt);margin-bottom:36px;display:inline-block;position:relative;}
+  /* COMBINED HERO + VIDEO — ABOVE THE FOLD */
+  .hero-video{position:relative;background:var(--hero-grad);padding:64px 0 90px;overflow:hidden;}
+  .hero-video::before{content:"";position:absolute;inset:0;background:var(--glow);pointer-events:none;}
+  .hero-video::after{content:"";position:absolute;inset:0;background:var(--glow-2);pointer-events:none;}
+  .hero-video-inner{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:0 36px;text-align:center;}
+  .hero-text-block{margin-bottom:40px;}
+  .kicker{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:4.5px;text-transform:uppercase;color:var(--accent-lt);margin-bottom:24px;display:inline-block;position:relative;}
   .kicker::before,.kicker::after{content:"";position:absolute;top:50%;width:48px;height:1px;background:var(--accent-lt);opacity:0.5;}
   .kicker::before{right:calc(100% + 18px);}
   .kicker::after{left:calc(100% + 18px);}
-  h1.hero-title{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(48px,7.5vw,92px);line-height:1.05;letter-spacing:-0.02em;color:var(--txt);margin-bottom:22px;}
-  h1.hero-title em{font-style:italic;color:var(--accent-lt);font-weight:400;display:block;}
-  .hero-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.9vw,28px);color:var(--txt);max-width:720px;margin:0 auto 44px;line-height:1.6;font-weight:400;}
-  .hero-divider{display:flex;align-items:center;justify-content:center;gap:16px;margin:52px auto 0;color:var(--accent-lt);}
-  .hero-divider::before,.hero-divider::after{content:"";width:70px;height:1px;background:linear-gradient(90deg,transparent,var(--accent-lt),transparent);}
-  .hero-divider span{font-size:20px;animation:shimmer 3s ease-in-out infinite;}
-  .video-section{background:var(--bg);padding:110px 0;position:relative;overflow:hidden;}
-  .video-section::before{content:"";position:absolute;top:-40%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(110,56,101,0.18),transparent 70%);border-radius:50%;pointer-events:none;animation:drift 20s ease-in-out infinite;}
-  .video-label{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--accent-lt);text-align:center;margin-bottom:16px;position:relative;z-index:2;}
-  .video-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,5.5vw,64px);font-weight:500;font-style:italic;color:var(--txt);text-align:center;margin-bottom:56px;line-height:1.15;position:relative;z-index:2;letter-spacing:-0.01em;}
-  .video-heading em{color:var(--accent-lt);font-style:italic;}
-  .video-wrap{position:relative;z-index:2;max-width:960px;margin:0 auto;padding:0 36px;}
+  h1.hero-title{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.8vw,58px);line-height:1.1;letter-spacing:-0.02em;color:var(--txt);margin-bottom:0;max-width:920px;margin-left:auto;margin-right:auto;}
+  h1.hero-title em{font-style:italic;color:var(--accent-lt);font-weight:400;display:block;margin-top:6px;}
+  .video-wrap{position:relative;z-index:2;max-width:960px;margin:0 auto;padding:0;}
+  .video-meta{text-align:center;margin-bottom:22px;}
+  .social-proof{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(15px,1.7vw,18px);color:var(--detail);margin-bottom:10px;letter-spacing:0.3px;line-height:1.5;max-width:640px;margin-left:auto;margin-right:auto;}
+  .runtime-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--txt);margin:0;}
+  .runtime-label strong{color:var(--accent-lt);font-weight:700;}
+  .unmute-btn{position:absolute;bottom:20px;right:20px;z-index:10;display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:40px;background:rgba(31,19,32,0.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--border-strong);color:var(--moon);font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;box-shadow:0 8px 24px rgba(0,0,0,0.4);animation:pulseGlow 2.5s ease-in-out infinite;}
+  .unmute-btn:hover{background:var(--accent);border-color:var(--accent-lt);transform:translateY(-2px);}
+  .unmute-btn.hidden{display:none;}
+  .unmute-icon{font-size:16px;}
   .post-video-cta{text-align:center;margin-top:56px;padding:0 16px;}
   .post-video-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.8vw,30px);color:var(--txt);line-height:1.5;margin-bottom:36px;max-width:680px;margin-left:auto;margin-right:auto;}
   .post-video-text em{color:var(--accent-lt);font-style:italic;font-weight:500;}
+
+  /* CLOSING THESIS — final beat after CTA */
+  .closing-thesis{position:relative;background:var(--section-grad);padding:140px 0;overflow:hidden;text-align:center;}
+  .closing-thesis::before{content:"";position:absolute;inset:0;background:var(--glow);pointer-events:none;}
+  .closing-thesis-inner{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 36px;}
+  .closing-thesis-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:clamp(32px,4.5vw,56px);line-height:1.25;letter-spacing:-0.01em;color:var(--txt);margin:0;}
+  .closing-thesis-text em{color:var(--accent-lt);font-style:italic;font-weight:700;}
   .video-frame{position:relative;width:100%;aspect-ratio:16/9;background:var(--section-grad);border-radius:20px;border:1px solid var(--border-strong);box-shadow:var(--shadow-strong),0 0 0 1px rgba(181,123,174,0.08);overflow:hidden;display:flex;align-items:center;justify-content:center;}
   .video-frame::before{content:"";position:absolute;inset:0;background-image:var(--stars);opacity:0.6;}
   .video-placeholder-inner{position:relative;z-index:2;text-align:center;padding:0 24px;}
@@ -169,12 +176,13 @@
     .topbar{padding:14px 22px;}
     .top-cta{padding:9px 16px;font-size:10px;}
     .container,.container-narrow{padding:0 24px;}
-    .hero{padding:90px 0 80px;}
+    .hero-video{padding:48px 0 70px;}
+    .hero-video-inner{padding:0 24px;}
+    .hero-text-block{margin-bottom:28px;}
     .kicker::before,.kicker::after{width:28px;}
-    .kicker{font-size:11px;letter-spacing:3.2px;}
-    .eyebrow{font-size:16px;}
-    .hero-sub{font-size:20px;}
-    .video-section,section.bloc{padding:80px 0;}
+    .kicker{font-size:11px;letter-spacing:3.2px;margin-bottom:18px;}
+    h1.hero-title{font-size:28px;}
+    section.bloc{padding:80px 0;}
     .cta-section{padding:90px 0;}
     .final-section{padding:100px 0;}
     .stuck-intro{font-size:19px;}
@@ -185,12 +193,17 @@
     .lesson:hover{padding-left:10px;}
     .lesson-num{font-size:26px;min-width:44px;}
     .lesson-text{font-size:16px;}
-    .video-wrap{padding:0 24px;}
-    .post-video-cta{margin-top:40px;}
-    .post-video-text{font-size:20px;margin-bottom:28px;}
-    .play-circle{width:76px;height:76px;}
-    .play-circle::after{border-width:12px 0 12px 19px;}
-    .video-placeholder-text{font-size:20px;}
+    .video-wrap{padding:0;}
+    .video-meta{margin-bottom:16px;}
+    .social-proof{font-size:13px;margin-bottom:8px;}
+    .runtime-label{font-size:10px;letter-spacing:2.5px;}
+    .unmute-btn{bottom:12px;right:12px;padding:10px 16px;font-size:11px;letter-spacing:1.5px;gap:7px;}
+    .unmute-icon{font-size:14px;}
+    .post-video-cta{margin-top:36px;padding:0 8px;}
+    .post-video-text{font-size:19px;margin-bottom:26px;}
+    .closing-thesis{padding:90px 0;}
+    .closing-thesis-inner{padding:0 24px;}
+    .closing-thesis-text{font-size:26px;line-height:1.3;}
     .btn-primary{padding:19px 38px;font-size:12px;letter-spacing:2.6px;}
     .story-body{font-size:19px;}
     .story-body p:first-of-type{font-size:21px;}
@@ -198,7 +211,6 @@
     .final-q{font-size:20px;}
     .final-eyebrow{font-size:22px;}
     .section-eyebrow{font-size:11px;letter-spacing:3px;}
-    .video-label{font-size:11px;letter-spacing:3px;}
     .footer-tag{font-size:16px;}
     .footer-brand{font-size:22px;}
   }
@@ -207,155 +219,53 @@
 <body>
 
 <div class="topbar">
-  <div class="brand-mark">Beautiful <span>Badass</span></div>
-  <a href="https://api.leadconnectorhq.com/widget/booking/1kswvKdTmH7BMsMIIxU5" class="top-cta" target="_blank" rel="noopener">Book a Call</a>
+  <div class="brand-mark">Badass <span>Alchemy</span></div>
+  <a href="#watch" class="top-cta">Watch Now</a>
 </div>
 
-<section class="hero">
+<section class="hero-video" id="watch">
   <div class="stars-bg"></div>
   <div class="grain"></div>
-  <div class="hero-content container">
-    <div class="eyebrow reveal reveal-1">Badass Alchemy presents</div>
-    <div class="kicker reveal reveal-2">A Free Masterclass</div>
-    <h1 class="hero-title reveal reveal-3">
-      You Don't Need Another<br>Manifestation Method<br>
-      <em>You Need a New Identity</em>
-    </h1>
-    <p class="hero-sub reveal reveal-4">
-      For ambitious women ready to release subconscious survival patterns, expand their capacity to receive, and embody the version of themselves capable of holding more abundance, love, visibility, and self-trust.
+  <div class="hero-video-inner">
+    <div class="hero-text-block">
+      <div class="kicker reveal reveal-1">A Free Masterclass</div>
+      <h1 class="hero-title reveal reveal-2">
+        You're in.
+        <em>Press play when you're ready.</em>
+      </h1>
+    </div>
+
+    <div class="video-wrap reveal reveal-3">
+      <div class="video-meta">
+        <p class="social-proof">&#10026; Watched by women releasing survival mode and stepping into sovereign identity &#10026;</p>
+        <p class="runtime-label">Watch the masterclass &mdash; <strong>10 min</strong></p>
+      </div>
+      <div class="video-frame" id="videoFrame">
+        <iframe id="ytPlayer" src="https://www.youtube.com/embed/_wEmfMr7bN4?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" title="Quantum Queen Masterclass" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:20px;"></iframe>
+        <button class="unmute-btn" id="unmuteBtn" type="button" aria-label="Tap to unmute video">
+          <span class="unmute-icon">&#128263;</span>
+          <span class="unmute-text">Tap to unmute</span>
+        </button>
+      </div>
+      <div class="post-video-cta">
+        <p class="post-video-text">Now that you've watched it&hellip; if this resonates, <em>let's talk.</em></p>
+        <a href="https://api.leadconnectorhq.com/widget/booking/1kswvKdTmH7BMsMIIxU5" class="btn-primary" target="_blank" rel="noopener">Book a Discovery Call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing-thesis">
+  <div class="stars-bg"></div>
+  <div class="closing-thesis-inner">
+    <p class="closing-thesis-text">
+      You cannot sustainably create abundance from an identity <em>rooted in survival.</em>
     </p>
-    <div class="hero-divider reveal reveal-5">
-      <span>&#10026;</span>
-    </div>
-  </div>
-</section>
-
-<section class="video-section">
-  <div class="video-label">Watch the Masterclass</div>
-  <h2 class="video-heading">The <em>Quantum Queen</em> teaching</h2>
-  <div class="video-wrap">
-    <div class="video-frame">
-      <iframe src="https://www.youtube.com/embed/_wEmfMr7bN4?rel=0&modestbranding=1" title="Quantum Queen Masterclass" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:20px;"></iframe>
-    </div>
-    <div class="post-video-cta">
-      <p class="post-video-text">Now that you've watched it&hellip; if this resonates, <em>let's talk.</em></p>
-      <a href="https://api.leadconnectorhq.com/widget/booking/1kswvKdTmH7BMsMIIxU5" class="btn-primary" target="_blank" rel="noopener">Book a Discovery Call</a>
-    </div>
-  </div>
-</section>
-
-<section class="bloc stuck-section">
-  <div class="section-stars"></div>
-  <div class="container">
-    <div class="section-eyebrow">The Real Reason</div>
-    <h2 class="section-h">Why you still <em>feel stuck</em></h2>
-
-    <div class="stuck-intro">
-      <p>You've done the journaling.</p>
-      <p>The healing.</p>
-      <p>The affirmations.</p>
-      <p>The mindset work.</p>
-      <p>The meditations.</p>
-      <p style="margin-top:28px;">And yet somehow&hellip;</p>
-      <p>you still feel trapped in the same emotional cycles.</p>
-      <p class="punch">Because the issue was never a lack of desire.</p>
-    </div>
-
-    <div class="section-eyebrow" style="margin-bottom:36px;">Even when expansion arrives</div>
-
-    <div class="pattern-grid">
-      <div class="pattern">overthinking</div>
-      <div class="pattern">self-protection</div>
-      <div class="pattern">hyper-independence</div>
-      <div class="pattern">people pleasing</div>
-      <div class="pattern">emotional exhaustion</div>
-      <div class="pattern">self-sabotage</div>
-    </div>
-
-    <div class="thesis-card">
-      <p class="thesis-text">
-        You cannot sustainably create abundance from an identity <em>rooted in survival.</em>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="bloc inside-section">
-  <div class="container">
-    <div class="section-eyebrow">Inside the Masterclass</div>
-    <h2 class="section-h">What you'll <em>learn</em></h2>
-
-    <div class="lesson-list">
-      <div class="lesson"><div class="lesson-num">01</div><div class="lesson-text">Why manifestation alone often doesn't create lasting change</div></div>
-      <div class="lesson"><div class="lesson-num">02</div><div class="lesson-text">How subconscious survival identities shape your reality</div></div>
-      <div class="lesson"><div class="lesson-num">03</div><div class="lesson-text">Why your nervous system rejects what feels unfamiliar</div></div>
-      <div class="lesson"><div class="lesson-num">04</div><div class="lesson-text">The hidden patterns keeping you emotionally stuck</div></div>
-      <div class="lesson"><div class="lesson-num">05</div><div class="lesson-text">Why receiving is more important than attracting</div></div>
-      <div class="lesson"><div class="lesson-num">06</div><div class="lesson-text">The 4-step Quantum Queen Method for identity recalibration</div></div>
-      <div class="lesson"><div class="lesson-num">07</div><div class="lesson-text">How to stop collapsing after expansion</div></div>
-    </div>
-  </div>
-</section>
-
-<section class="bloc notabout-section">
-  <div class="stars-bg"></div>
-  <div class="container-narrow">
-    <div class="notabout-content">
-      <div class="section-eyebrow">A clarification</div>
-      <h2 class="notabout-h">
-        This work is not about<br><em>becoming someone else</em>
-      </h2>
-      <div class="notabout-body">
-        <p>It's about releasing the version of yourself that was built around fear, scarcity, self-protection, and emotional survival.</p>
-        <p>The woman you are becoming <strong>already exists.</strong></p>
-        <p>Quantum Queen helps you become emotionally, mentally, and subconsciously available for the life you know you are meant for.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="cta-section">
-  <div class="stars-bg"></div>
-  <div class="cta-inner container">
-    <div class="coming-soon-mark"><span class="dot"></span>Masterclass Coming Soon</div>
-    <h2 class="cta-h">Ready before the<br>masterclass? <em>Let's talk.</em></h2>
-    <p class="cta-sub">Book a clarity call and we'll map out where you are, what's keeping you in survival mode, and the path to the version of you that's already on the other side.</p>
-    <a href="https://api.leadconnectorhq.com/widget/booking/1kswvKdTmH7BMsMIIxU5" class="btn-primary" target="_blank" rel="noopener">Book Your Clarity Call</a>
-  </div>
-</section>
-
-<section class="bloc story-section">
-  <div class="container">
-    <div class="section-eyebrow">A note from Danielle</div>
-    <h2 class="section-h">For years I thought<br>I needed <em>more healing.</em></h2>
-
-    <div class="story-grid">
-      <div class="story-body">
-        <p>For years, I believed I needed more confidence, more healing, or another breakthrough.</p>
-        <p>But underneath it all, I was still operating from survival mode.</p>
-        <p>I looked functional externally&hellip; but internally I was overthinking, self-abandoning, emotionally exhausted, and constantly trying to control outcomes.</p>
-        <p><em>Everything changed when I stopped trying to "manifest harder" and started rebuilding my identity at the root.</em></p>
-        <p>Now I help ambitious women release subconscious survival patterns so they can safely receive, hold, and sustain more abundance, love, visibility, and self-trust.</p>
-        <div class="story-signature">
-          <div class="sig-line"></div>
-          <div class="sig-name">Danielle Pettee</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="final-section">
-  <div class="final-content container">
-    <div class="final-eyebrow">She's already inside you.</div>
-    <h2 class="final-h">The woman you are becoming<br><em>already exists.</em></h2>
-    <p class="final-q">The question is &mdash; are you finally ready to stop protecting the <em>identity that's kept her trapped?</em></p>
-    <a href="https://api.leadconnectorhq.com/widget/booking/1kswvKdTmH7BMsMIIxU5" class="btn-primary" target="_blank" rel="noopener">Book Your Clarity Call</a>
   </div>
 </section>
 
 <footer>
-  <div class="footer-brand">Beautiful <span>Badass</span></div>
+  <div class="footer-brand">Badass <span>Alchemy</span></div>
   <div class="footer-tag">From scarcity to sovereign.</div>
   <div class="footer-divider"></div>
   <div class="footer-signoff">You are the alchemy. &#10026;</div>
@@ -363,4 +273,28 @@
 </footer>
 
 </body>
+<script>
+(function(){
+  var tag=document.createElement('script');
+  tag.src='https://www.youtube.com/iframe_api';
+  var first=document.getElementsByTagName('script')[0];
+  first.parentNode.insertBefore(tag,first);
+  var ytPlayer=null;
+  window.onYouTubeIframeAPIReady=function(){
+    ytPlayer=new YT.Player('ytPlayer',{events:{'onReady':function(e){e.target.mute();},'onStateChange':function(e){if(e.data===YT.PlayerState.PLAYING){var b=document.getElementById('unmuteBtn');if(b&&ytPlayer&&ytPlayer.isMuted&&!ytPlayer.isMuted()){b.classList.add('hidden');}}}}});
+  };
+  document.addEventListener('DOMContentLoaded',function(){
+    var btn=document.getElementById('unmuteBtn');
+    if(!btn)return;
+    btn.addEventListener('click',function(){
+      if(ytPlayer&&typeof ytPlayer.unMute==='function'){
+        ytPlayer.unMute();
+        ytPlayer.setVolume(100);
+        if(typeof ytPlayer.playVideo==='function'){ytPlayer.playVideo();}
+      }
+      btn.classList.add('hidden');
+    });
+  });
+})();
+</script>
 </html>
