@@ -252,26 +252,9 @@
     border-top: 1px solid var(--border);
   }
   .qq-about-inner {
-    max-width: 1080px;
+    max-width: 720px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 64px;
-    align-items: center;
-  }
-  .qq-about-photo-wrap {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 16px 48px rgba(42, 20, 36, 0.18);
-  }
-  .qq-about-photo-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+    text-align: center;
   }
   .qq-about-eyebrow {
     font-family: var(--sans);
@@ -280,7 +263,7 @@
     letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--mauve-deep);
-    margin: 0 0 18px;
+    margin: 0 0 20px;
   }
   .qq-about-headline {
     font-family: var(--serif);
@@ -288,13 +271,33 @@
     font-size: clamp(30px, 4.5vw, 46px);
     line-height: 1.1;
     color: var(--plum-deep);
-    margin: 0 0 28px;
+    margin: 0 0 48px;
     letter-spacing: -0.3px;
   }
   .qq-about-headline em {
     font-style: italic;
     font-weight: 500;
     color: var(--mauve-deep);
+  }
+  .qq-about-photo-wrap {
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 4 / 5;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(42, 20, 36, 0.18);
+    margin: 0 auto 56px;
+  }
+  .qq-about-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .qq-about-text {
+    text-align: left;
+    max-width: 620px;
+    margin: 0 auto;
   }
   .qq-about-body {
     font-family: var(--serif);
@@ -312,13 +315,14 @@
     font-style: italic;
     font-size: 22px;
     color: var(--mauve-deep);
-    margin: 24px 0 0;
+    margin: 28px 0 0;
     font-weight: 500;
+    text-align: left;
   }
 
-  /* ─── TESTIMONIALS (SCREENSHOT GALLERY) ─── */
+  /* ─── TESTIMONIALS (FEATURED STORY LAYOUT) ─── */
   .qq-tests {
-    padding: 96px 28px 80px;
+    padding: 96px 28px 88px;
     text-align: center;
     border-top: 1px solid var(--border);
   }
@@ -334,10 +338,10 @@
   .qq-tests-headline {
     font-family: var(--serif);
     font-weight: 600;
-    font-size: clamp(28px, 4vw, 40px);
+    font-size: clamp(30px, 4.5vw, 46px);
     line-height: 1.15;
     color: var(--plum-deep);
-    margin: 0 auto 16px;
+    margin: 0 auto 14px;
     max-width: 720px;
     letter-spacing: -0.3px;
   }
@@ -351,79 +355,142 @@
     font-style: italic;
     font-size: 17px;
     color: var(--txt-muted);
-    max-width: 600px;
-    margin: 0 auto 56px;
+    max-width: 620px;
+    margin: 0 auto 80px;
   }
-  .qq-tests-grid {
-    max-width: 1180px;
-    margin: 0 auto;
+
+  /* Each featured story */
+  .qq-test-feature {
+    max-width: 1120px;
+    margin: 0 auto 96px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 36px;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+    text-align: left;
   }
-  .qq-test-card {
+  .qq-test-feature:last-child {
+    margin-bottom: 0;
+  }
+  .qq-test-feature.qq-feature-right .qq-test-text {
+    order: 2;
+  }
+  .qq-test-feature.qq-feature-right .qq-test-media {
+    order: 1;
+  }
+
+  /* TEXT column */
+  .qq-test-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--mauve-deep);
+    margin: 0 0 18px;
+  }
+  .qq-test-pullquote {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(26px, 3.6vw, 38px);
+    line-height: 1.2;
+    color: var(--plum-deep);
+    margin: 0 0 28px;
+    letter-spacing: -0.3px;
+  }
+  .qq-test-pullquote em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--mauve-deep);
+  }
+  .qq-test-body {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--txt-sec);
+    margin: 0 0 18px;
+  }
+  .qq-test-body em {
+    font-style: italic;
+    color: var(--mauve-deep);
+  }
+  .qq-test-tag {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 19px;
+    color: var(--mauve-deep);
+    margin: 20px 0 12px;
+    font-weight: 500;
+  }
+  .qq-test-name {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--plum-deep);
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+  }
+
+  /* MEDIA column */
+  .qq-test-media {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 24px;
+    position: relative;
+  }
+  .qq-test-photo {
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 4 / 5;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 36px rgba(42, 20, 36, 0.16);
+    align-self: flex-start;
+  }
+  .qq-feature-right .qq-test-photo {
+    align-self: flex-end;
+  }
+  .qq-test-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .qq-test-shot {
     width: 100%;
-    border-radius: 14px;
+    max-width: 440px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 32px rgba(42, 20, 36, 0.14);
+    box-shadow: 0 10px 28px rgba(42, 20, 36, 0.12);
     background: #FFFFFF;
     border: 1px solid var(--border);
-    display: block;
+    align-self: flex-end;
+    margin-top: -40px;
+    position: relative;
+    z-index: 2;
+  }
+  .qq-feature-right .qq-test-shot {
+    align-self: flex-start;
   }
   .qq-test-shot img {
     width: 100%;
     height: auto;
     display: block;
   }
-  .qq-test-person {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .qq-test-avatar {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #B57BAE 0%, #6E3865 100%);
-    color: #FFFFFF;
-    font-family: var(--sans);
-    font-size: 18px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    overflow: hidden;
-    border: 2px solid #FFFFFF;
-    box-shadow: 0 4px 14px rgba(110, 56, 101, 0.22);
-  }
-  .qq-test-avatar img {
+  .qq-test-shot-solo {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 480px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 36px rgba(42, 20, 36, 0.16);
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    margin: 0 auto;
   }
-  .qq-test-name {
-    font-family: var(--sans);
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--plum-deep);
-    margin: 0;
-    letter-spacing: 0.3px;
-    text-align: left;
-  }
-  .qq-test-meta {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 14px;
-    color: var(--txt-muted);
-    margin: 2px 0 0;
-    text-align: left;
+  .qq-test-shot-solo img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   /* ─── SECOND CTA ─── */
@@ -495,12 +562,24 @@
     .qq-cta-block { padding: 32px 22px 48px; }
     .qq-cta-button { padding: 18px 32px; font-size: 12px; letter-spacing: 2px; }
     .qq-about { padding: 64px 22px 64px; }
-    .qq-about-inner { grid-template-columns: 1fr; gap: 40px; }
-    .qq-about-headline { margin-bottom: 22px; }
+    .qq-about-headline { margin-bottom: 36px; }
+    .qq-about-photo-wrap { max-width: 280px; margin-bottom: 40px; }
     .qq-about-body { font-size: 17px; }
     .qq-tests { padding: 64px 22px 56px; }
-    .qq-tests-headline { margin-bottom: 36px; }
-    .qq-tests-grid { grid-template-columns: 1fr; gap: 20px; }
+    .qq-tests-headline { margin-bottom: 12px; }
+    .qq-tests-sub { margin-bottom: 48px; }
+    .qq-test-feature {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 72px;
+      text-align: left;
+    }
+    .qq-test-feature.qq-feature-right .qq-test-text { order: 2; }
+    .qq-test-feature.qq-feature-right .qq-test-media { order: 1; }
+    .qq-test-photo { max-width: 280px; }
+    .qq-test-shot { max-width: 100%; margin-top: -24px; }
+    .qq-feature-right .qq-test-photo { align-self: flex-start; }
+    .qq-feature-right .qq-test-shot { align-self: flex-end; }
     .qq-cta-block-2 { padding: 40px 22px 56px; }
     .qq-manifesto { padding: 56px 22px 56px; }
     .qq-footer { padding: 48px 22px 40px; }
@@ -576,6 +655,12 @@
   <section class="qq-about">
     <div class="qq-about-inner">
 
+      <p class="qq-about-eyebrow">Who's On The Other End Of This Call</p>
+
+      <h2 class="qq-about-headline">
+        Hi, I'm Danielle. <em>I used to be where you are.</em>
+      </h2>
+
       <div class="qq-about-photo-wrap">
         <img
           src="https://res.cloudinary.com/donbuqwxp/image/upload/v1781831094/IMG_5735_r6ugct.jpg"
@@ -584,12 +669,6 @@
       </div>
 
       <div class="qq-about-text">
-        <p class="qq-about-eyebrow">Who's on the other end of this call</p>
-
-        <h2 class="qq-about-headline">
-          I'm Danielle. <em>I used to be where you are.</em>
-        </h2>
-
         <p class="qq-about-body">
           I came up inside an intentional community. Hippies, healers, the whole world. Energy was the only currency anyone believed in. My ex boyfriend told me money was evil and capitalistic — he'd shame me for every dollar I spent and every dollar I made.
         </p>
@@ -622,73 +701,85 @@
 
   <!-- TESTIMONIALS -->
   <section class="qq-tests">
-    <p class="qq-tests-eyebrow">What Happens When She Says Yes</p>
+    <p class="qq-tests-eyebrow">Real Women · Real Transformations</p>
     <h2 class="qq-tests-headline">
-      Real messages from <em>real women.</em>
+      Women who did this work are <em>unrecognizable</em> to who they used to be.
     </h2>
     <p class="qq-tests-sub">
-      No polished press quotes. Just the words they sent me — unedited.
+      No polished press quotes. Just the women and the messages they sent me — unedited.
     </p>
 
-    <div class="qq-tests-grid">
-
-      <!-- TESTIMONIAL 1 — DEANNA -->
-      <div class="qq-test-card">
-        <div class="qq-test-shot">
-          <img
-            src="https://res.cloudinary.com/donbuqwxp/image/upload/v1781831213/505994334_24015905788004713_1676152832110911211_n_awp32k.jpg"
-            alt="Message from Deanna about her transformation"
-          />
-        </div>
-        <div class="qq-test-person">
-          <div class="qq-test-avatar">D</div>
-          <div>
-            <p class="qq-test-name">Deanna</p>
-            <p class="qq-test-meta">Quantum Queen client</p>
-          </div>
-        </div>
+    <!-- BOBBIE -->
+    <article class="qq-test-feature qq-feature-left">
+      <div class="qq-test-text">
+        <p class="qq-test-label">First Identity Detox Client</p>
+        <h3 class="qq-test-pullquote">
+          "I got the <em>fucking job</em> I wanted. Nailed it."
+        </h3>
+        <p class="qq-test-body">
+          Bobbie came to me underpaid, undervalued, and exhausted from waiting to be chosen. She didn't need more skills. She didn't need a better resume.
+        </p>
+        <p class="qq-test-body">
+          What she needed was to stop showing up as the woman who would be grateful for any offer — and start showing up as <em>the woman she already was.</em>
+        </p>
+        <p class="qq-test-body">
+          After the work, she walked into her interviews from the identity of the woman who already had the job. Commissioning managers flew in from Portland to hand her the letter.
+        </p>
+        <p class="qq-test-tag">"No AI needed. Just skills and my beautiful smile."</p>
+        <p class="qq-test-name">— Bobbie</p>
       </div>
 
-      <!-- TESTIMONIAL 2 — BOBBIE -->
-      <div class="qq-test-card">
+      <div class="qq-test-media">
+        <div class="qq-test-photo">
+          <img
+            src="https://res.cloudinary.com/donbuqwxp/image/upload/v1781831214/IMG_4216_wsh26u.jpg"
+            alt="Bobbie"
+          />
+        </div>
         <div class="qq-test-shot">
           <img
             src="https://res.cloudinary.com/donbuqwxp/image/upload/v1781296470/TESTIMONIAL.BOBBIE_eegmcx.jpg"
-            alt="Message from Bobbie"
+            alt="Real text message from Bobbie sharing the news she got the job"
           />
         </div>
-        <div class="qq-test-person">
-          <div class="qq-test-avatar">
-            <img
-              src="https://res.cloudinary.com/donbuqwxp/image/upload/v1781831214/IMG_4216_wsh26u.jpg"
-              alt="Bobbie"
-            />
-          </div>
-          <div>
-            <p class="qq-test-name">Bobbie</p>
-            <p class="qq-test-meta">Quantum Queen client</p>
-          </div>
-        </div>
+      </div>
+    </article>
+
+    <!-- DEANNA -->
+    <article class="qq-test-feature qq-feature-right">
+      <div class="qq-test-text">
+        <p class="qq-test-label">From The Workbook To Becoming Her</p>
+        <h3 class="qq-test-pullquote">
+          From <em>self-loathing on Facebook</em> — to choosing herself, every single day.
+        </h3>
+        <p class="qq-test-body">
+          Deanna was the woman posting on Facebook about how much she hated her life. Self-deprecating captions. Apologizing for existing. The kind of public unraveling that's painful to watch because <em>you recognize it.</em>
+        </p>
+        <p class="qq-test-body">
+          I sent her the workbook — back when the program was just an 80-page PDF. I checked in on her in the weeks she felt overwhelmed. She kept showing up.
+        </p>
+        <p class="qq-test-body">
+          Today she's launching a second business, hiring more staff for her cleaning business, and just moved into her own apartment with her son. But the real transformation isn't the storage unit. <em>It's that the woman who used to hate her life now trusts herself completely.</em>
+        </p>
+        <p class="qq-test-name">— Deanna</p>
       </div>
 
-      <!-- TESTIMONIAL 3 — DEANNA -->
-      <div class="qq-test-card">
-        <div class="qq-test-shot">
+      <div class="qq-test-media">
+        <div class="qq-test-shot-solo">
           <img
             src="https://res.cloudinary.com/donbuqwxp/image/upload/v1781831280/TESTIMONIALS9365_sp2pk6.jpg"
-            alt="Message from Deanna about her results"
+            alt="Real message from Deanna sharing her transformation"
           />
         </div>
-        <div class="qq-test-person">
-          <div class="qq-test-avatar">D</div>
-          <div>
-            <p class="qq-test-name">Deanna</p>
-            <p class="qq-test-meta">Quantum Queen client</p>
-          </div>
+        <div class="qq-test-shot-solo" style="margin-top: 24px;">
+          <img
+            src="https://res.cloudinary.com/donbuqwxp/image/upload/v1781831213/505994334_24015905788004713_1676152832110911211_n_awp32k.jpg"
+            alt="Facebook post from Deanna"
+          />
         </div>
       </div>
+    </article>
 
-    </div>
   </section>
 
   <!-- SECOND CTA -->
