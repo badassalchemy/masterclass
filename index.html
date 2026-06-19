@@ -245,6 +245,198 @@
     font-weight: 500;
   }
 
+  /* ─── ABOUT DANIELLE ─── */
+  .qq-about {
+    background: #FAF6F8;
+    padding: 96px 28px 96px;
+    border-top: 1px solid var(--border);
+  }
+  .qq-about-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .qq-about-photo-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(42, 20, 36, 0.18);
+  }
+  .qq-about-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .qq-about-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--mauve-deep);
+    margin: 0 0 18px;
+  }
+  .qq-about-headline {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(30px, 4.5vw, 46px);
+    line-height: 1.1;
+    color: var(--plum-deep);
+    margin: 0 0 28px;
+    letter-spacing: -0.3px;
+  }
+  .qq-about-headline em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--mauve-deep);
+  }
+  .qq-about-body {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--txt-sec);
+    margin: 0 0 18px;
+  }
+  .qq-about-body em {
+    font-style: italic;
+    color: var(--mauve-deep);
+  }
+  .qq-about-signature {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--mauve-deep);
+    margin: 24px 0 0;
+    font-weight: 500;
+  }
+
+  /* ─── TESTIMONIALS (SCREENSHOT GALLERY) ─── */
+  .qq-tests {
+    padding: 96px 28px 80px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .qq-tests-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--mauve-deep);
+    margin: 0 0 16px;
+  }
+  .qq-tests-headline {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.15;
+    color: var(--plum-deep);
+    margin: 0 auto 16px;
+    max-width: 720px;
+    letter-spacing: -0.3px;
+  }
+  .qq-tests-headline em {
+    font-style: italic;
+    color: var(--mauve-deep);
+    font-weight: 500;
+  }
+  .qq-tests-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--txt-muted);
+    max-width: 600px;
+    margin: 0 auto 56px;
+  }
+  .qq-tests-grid {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+  }
+  .qq-test-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .qq-test-shot {
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 32px rgba(42, 20, 36, 0.14);
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    display: block;
+  }
+  .qq-test-shot img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .qq-test-person {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .qq-test-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #B57BAE 0%, #6E3865 100%);
+    color: #FFFFFF;
+    font-family: var(--sans);
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 4px 14px rgba(110, 56, 101, 0.22);
+  }
+  .qq-test-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .qq-test-name {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--plum-deep);
+    margin: 0;
+    letter-spacing: 0.3px;
+    text-align: left;
+  }
+  .qq-test-meta {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--txt-muted);
+    margin: 2px 0 0;
+    text-align: left;
+  }
+
+  /* ─── SECOND CTA ─── */
+  .qq-cta-block-2 {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 28px 80px;
+    text-align: center;
+  }
+  .qq-cta-block-2 .qq-cta-lead {
+    font-size: clamp(24px, 3.4vw, 32px);
+  }
+
   /* ─── FOOTER ─── */
   .qq-footer {
     background: #FAF6F8;
@@ -302,6 +494,14 @@
     .qq-watch { padding: 16px 22px 24px; }
     .qq-cta-block { padding: 32px 22px 48px; }
     .qq-cta-button { padding: 18px 32px; font-size: 12px; letter-spacing: 2px; }
+    .qq-about { padding: 64px 22px 64px; }
+    .qq-about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .qq-about-headline { margin-bottom: 22px; }
+    .qq-about-body { font-size: 17px; }
+    .qq-tests { padding: 64px 22px 56px; }
+    .qq-tests-headline { margin-bottom: 36px; }
+    .qq-tests-grid { grid-template-columns: 1fr; gap: 20px; }
+    .qq-cta-block-2 { padding: 40px 22px 56px; }
     .qq-manifesto { padding: 56px 22px 56px; }
     .qq-footer { padding: 48px 22px 40px; }
   }
@@ -361,6 +561,140 @@
   <section class="qq-cta-block">
     <p class="qq-cta-lead">
       Now that you've watched it… if this resonates, <em>let's talk.</em>
+    </p>
+    <a
+      class="qq-cta-button"
+      href="https://api.leadconnectorhq.com/widget/booking/1kswvKdTmH7BMsMIIxU5"
+      target="_blank"
+      rel="noopener"
+    >
+      Book a Discovery Call
+    </a>
+  </section>
+
+  <!-- ABOUT DANIELLE -->
+  <section class="qq-about">
+    <div class="qq-about-inner">
+
+      <div class="qq-about-photo-wrap">
+        <img
+          src="https://res.cloudinary.com/donbuqwxp/image/upload/v1781831094/IMG_5735_r6ugct.jpg"
+          alt="Danielle, founder of Badass Alchemy"
+        />
+      </div>
+
+      <div class="qq-about-text">
+        <p class="qq-about-eyebrow">Who's on the other end of this call</p>
+
+        <h2 class="qq-about-headline">
+          I'm Danielle. <em>I used to be where you are.</em>
+        </h2>
+
+        <p class="qq-about-body">
+          I came up inside an intentional community. Hippies, healers, the whole world. Energy was the only currency anyone believed in. My ex boyfriend told me money was evil and capitalistic — he'd shame me for every dollar I spent and every dollar I made.
+        </p>
+
+        <p class="qq-about-body">
+          The community wasn't better. They'd put me in a cage of language: <em>you have enough, you work too much, you need to surrender more.</em> I was being quietly brainwashed into staying small and calling it spirituality.
+        </p>
+
+        <p class="qq-about-body">
+          On the other side, my parents: <em>"You need to make more money. You need to be a millionaire."</em> One side telling me ambition was a sickness. The other side telling me my worth was a number. I was pinned between two narratives and neither one was mine.
+        </p>
+
+        <p class="qq-about-body">
+          So I detoxed both. I built my own relationship to money from scratch — and the year I finally left that community, I made my first six figures. That wasn't an accident. <em>That was the cost of reclaiming my own mind.</em>
+        </p>
+
+        <p class="qq-about-body">
+          Today I run a multi-six-figure agency that's helped founders raise <em>$180M+ in startup capital and over $300M in real estate.</em> I'm on calls with investors weekly. My day job is helping people build empires.
+        </p>
+
+        <p class="qq-about-body">
+          And the work I do with women? It's the work I had to do on myself first — to stop letting other people's stories about money, ambition, and worth run my life. Spirituality without strategy is just vibes. <em>And vibes don't build the life you actually want.</em>
+        </p>
+
+        <p class="qq-about-signature">— Danielle</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="qq-tests">
+    <p class="qq-tests-eyebrow">What Happens When She Says Yes</p>
+    <h2 class="qq-tests-headline">
+      Real messages from <em>real women.</em>
+    </h2>
+    <p class="qq-tests-sub">
+      No polished press quotes. Just the words they sent me — unedited.
+    </p>
+
+    <div class="qq-tests-grid">
+
+      <!-- TESTIMONIAL 1 — DEANNA -->
+      <div class="qq-test-card">
+        <div class="qq-test-shot">
+          <img
+            src="https://res.cloudinary.com/donbuqwxp/image/upload/v1781831213/505994334_24015905788004713_1676152832110911211_n_awp32k.jpg"
+            alt="Message from Deanna about her transformation"
+          />
+        </div>
+        <div class="qq-test-person">
+          <div class="qq-test-avatar">D</div>
+          <div>
+            <p class="qq-test-name">Deanna</p>
+            <p class="qq-test-meta">Quantum Queen client</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TESTIMONIAL 2 — BOBBIE -->
+      <div class="qq-test-card">
+        <div class="qq-test-shot">
+          <img
+            src="https://res.cloudinary.com/donbuqwxp/image/upload/v1781296470/TESTIMONIAL.BOBBIE_eegmcx.jpg"
+            alt="Message from Bobbie"
+          />
+        </div>
+        <div class="qq-test-person">
+          <div class="qq-test-avatar">
+            <img
+              src="https://res.cloudinary.com/donbuqwxp/image/upload/v1781831214/IMG_4216_wsh26u.jpg"
+              alt="Bobbie"
+            />
+          </div>
+          <div>
+            <p class="qq-test-name">Bobbie</p>
+            <p class="qq-test-meta">Quantum Queen client</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TESTIMONIAL 3 — DEANNA -->
+      <div class="qq-test-card">
+        <div class="qq-test-shot">
+          <img
+            src="https://res.cloudinary.com/donbuqwxp/image/upload/v1781831280/TESTIMONIALS9365_sp2pk6.jpg"
+            alt="Message from Deanna about her results"
+          />
+        </div>
+        <div class="qq-test-person">
+          <div class="qq-test-avatar">D</div>
+          <div>
+            <p class="qq-test-name">Deanna</p>
+            <p class="qq-test-meta">Quantum Queen client</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECOND CTA -->
+  <section class="qq-cta-block-2">
+    <p class="qq-cta-lead">
+      If any of this is landing — <em>book the call.</em>
     </p>
     <a
       class="qq-cta-button"
