@@ -558,22 +558,32 @@
   @media (max-width: 600px) {
     .qq-topbar { padding: 14px 18px; gap: 12px; }
     .qq-topbar-logo { height: 36px; }
-    .qq-topbar-cta { font-size: 10px; padding: 10px 16px; letter-spacing: 1.5px; }
+    .qq-topbar-cta { font-size: 11px; padding: 11px 18px; letter-spacing: 1.5px; }
+
     .qq-hero { padding: 48px 22px 24px; }
     .qq-eyebrow { gap: 12px; margin-bottom: 24px; }
     .qq-eyebrow-line { width: 22px; }
-    .qq-eyebrow-text { font-size: 11px; letter-spacing: 3px; }
+    .qq-eyebrow-text { font-size: 12px; letter-spacing: 3px; }
+    .qq-hero-headline { font-size: 42px; line-height: 1.05; }
+
     .qq-watch { padding: 16px 22px 24px; }
-    .qq-cta-block { padding: 32px 22px 48px; }
-    .qq-cta-button { padding: 18px 32px; font-size: 12px; letter-spacing: 2px; }
+    .qq-watch-label { font-size: 19px; }
+
+    .qq-cta-block { padding: 36px 22px 48px; }
+    .qq-cta-lead { font-size: 26px; line-height: 1.3; margin-bottom: 28px; }
+    .qq-cta-button { padding: 18px 32px; font-size: 13px; letter-spacing: 2px; }
+
     .qq-about { padding: 64px 18px 64px; }
-    .qq-about-headline { margin-bottom: 36px; }
+    .qq-about-eyebrow { font-size: 12px; }
+    .qq-about-headline { font-size: 38px; line-height: 1.08; margin-bottom: 36px; }
     .qq-about-photo-wrap { max-width: 100%; margin-bottom: 40px; aspect-ratio: 4 / 3; }
-    .qq-about-body { font-size: 20px; line-height: 1.55; }
-    .qq-about-signature { font-size: 24px; }
+    .qq-about-body { font-size: 22px; line-height: 1.55; margin-bottom: 22px; }
+    .qq-about-signature { font-size: 26px; margin-top: 32px; }
+
     .qq-tests { padding: 64px 22px 56px; }
-    .qq-tests-headline { margin-bottom: 12px; }
-    .qq-tests-sub { margin-bottom: 48px; }
+    .qq-tests-eyebrow { font-size: 12px; }
+    .qq-tests-headline { font-size: 36px; line-height: 1.1; margin-bottom: 14px; }
+    .qq-tests-sub { font-size: 19px; margin-bottom: 48px; }
     .qq-test-feature {
       grid-template-columns: 1fr;
       gap: 32px;
@@ -582,16 +592,22 @@
     }
     .qq-test-feature.qq-feature-right .qq-test-text { order: 2; }
     .qq-test-feature.qq-feature-right .qq-test-media { order: 1; }
-    .qq-test-pullquote { font-size: clamp(28px, 7vw, 36px); margin-bottom: 26px; }
-    .qq-test-body { font-size: 20px; line-height: 1.55; }
-    .qq-test-tag { font-size: 21px; }
-    .qq-test-name { font-size: 19px; }
+    .qq-test-label { font-size: 12px; }
+    .qq-test-pullquote { font-size: 32px; line-height: 1.15; margin-bottom: 26px; }
+    .qq-test-body { font-size: 21px; line-height: 1.55; margin-bottom: 20px; }
+    .qq-test-tag { font-size: 22px; margin-top: 24px; }
+    .qq-test-name { font-size: 20px; }
     .qq-test-photo { max-width: 280px; }
     .qq-test-shot { max-width: 100%; margin-top: -24px; }
     .qq-feature-right .qq-test-photo { align-self: flex-start; }
     .qq-feature-right .qq-test-shot { align-self: flex-end; }
+
     .qq-cta-block-2 { padding: 40px 22px 56px; }
+    .qq-cta-block-2 .qq-cta-lead { font-size: 28px; }
+
     .qq-manifesto { padding: 56px 22px 56px; }
+    .qq-manifesto-text { font-size: 30px; line-height: 1.25; }
+
     .qq-footer { padding: 48px 22px 40px; }
   }
 </style>
@@ -668,7 +684,8 @@
       <p class="qq-about-eyebrow">Who's On The Other End Of This Call</p>
 
       <h2 class="qq-about-headline">
-        Hi, I'm Danielle. <em>I used to be where you are.</em>
+        Hi, I'm Danielle.<br>
+        <em>I used to be where you are.</em>
       </h2>
 
       <div class="qq-about-photo-wrap">
